@@ -21,7 +21,7 @@ public class MainController {
 
     @Autowired
     private UserService userService;
-
+    //wenfeng
     @RequestMapping("")
     public String home(){
         List<User> us = new ArrayList<User>();
