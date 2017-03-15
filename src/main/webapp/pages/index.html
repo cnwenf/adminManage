@@ -57,14 +57,9 @@
 			</ul>
 		
 		</div>
-		
 		<div id="content">
-			<div id="content-header">
-				<h1>部门概览</h1>
-			</div>
-            <div id="tree"></div>
 		</div>
-		
+
 
             <script src="js/excanvas.min.js"></script>
             <script src="js/jquery-3.1.1.min.js"></script>
@@ -76,64 +71,11 @@
             <script src="js/unicorn.js"></script>
             <script src="js/unicorn.dashboard.js"></script>
             <script src="js/bootstrap-treeview.min.js"></script>
-            <script>
-                $.post("/adminManage/userController/my", { "id": 2}, function (data) {
-                    if (data) {
-                        alert(data["username"]);
-                    }
-                })
-                function getData() {
-                    var data = [
-                        {
-                            text: "Parent 1",
-                            href:"index.html",
-                            nodes: [
-                                {
-                                    text: "Child 1",
-                                    href:"text",
-                                    nodes: [
-                                        {
-                                            text: "Grandchild 1",
-                                            href:"text"
-                                        },
-                                        {
-                                            href:"text",
-                                            text: "Grandchild 2"
-                                        }
-                                    ]
-                                },
-                                {
-                                    href:"text",
-                                    text: "Child 2"
-                                }
-                            ]
-                        },
-                        {
-                            href:"text",
-                            text: "Parent 2"
-                        },
-                        {
-                            href:"text",
-                            text: "Parent 3"
-                        },
-                        {
-                            href:"text",
-                            text: "Parent 4"
-                        },
-                        {
-                            href:"text",
-                            text: "Parent 5"
-                        }
-                    ];
-                    return data;
-                }
-                $('#tree').treeview({data: getData(),
-                    expandIcon: "glyphicon glyphicon-plus",
-                    collapseIcon:"glyphicon glyphicon-minus",
-                    nodeIcon:"glyphicon glyphicon-user",
-                    enableLinks: true,
-                    onhoverColor:"#428bca"
-                });
-            </script>
+    <script>
+        $.post("/adminManage/department/create", {"companyId":"2a14906e-b01a-4d9a-93e4-ac3740bbe33b", "name":"1Node"},
+        function(data) {
+
+        });
+    </script>
     </body>
 </html>

@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     public void saveUsers(List<User> us) {
         for (User u : us) {
-            userDao.save(u);
+            userDao.create(u);
         }
     }
 

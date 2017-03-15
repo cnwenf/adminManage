@@ -76,50 +76,6 @@
 <script src="js/unicorn.js"></script>
 <script src="js/unicorn.dashboard.js"></script>
 <script src="js/bootstrap-treeview.min.js"></script>
-<script>
-    function getData() {
-        var data = [
-            {
-                text: "Parent 1",
-                nodes: [
-                    {
-                        text: "Child 1",
-                        nodes: [
-                            {
-                                text: "Grandchild 1"
-                            },
-                            {
-                                text: "Grandchild 2"
-                            }
-                        ]
-                    },
-                    {
-                        text: "Child 2"
-                    }
-                ]
-            },
-            {
-                text: "Parent 2"
-            },
-            {
-                text: "Parent 3"
-            },
-            {
-                text: "Parent 4"
-            },
-            {
-                text: "Parent 5"
-            }
-        ];
-        return data;
-    }
-    $('#tree').treeview({data: getData(),
-        expandIcon: "glyphicon glyphicon-plus",
-        collapseIcon:"glyphicon glyphicon-minus",
-        nodeIcon:"glyphicon glyphicon-user",
-        enableLinks: true,
-        onhoverColor:"#428bca"
-    });
-</script>
+<script src="js/department-overview.js"></script>
 </body>
 </html>

@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by mark on 4/24/15.
  */
 
-@RequestMapping("/userController")
+@RequestMapping
 @Controller
 public class MainController {
 
     @Autowired
     private UserService userService;
     //wenfeng
-    @RequestMapping("/addUser")
+    @RequestMapping("")
     public String home(){
         List<User> us = new ArrayList<User>();
         User u = new User();

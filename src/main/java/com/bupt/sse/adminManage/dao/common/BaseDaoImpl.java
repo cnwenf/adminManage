@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StaleStateException;
 
 /**
  * BaseDaoImpl 定义DAO的通用操作的实现
@@ -30,7 +31,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public BaseDaoImpl() {
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         clazz = (Class<T>) type.getActualTypeArguments()[0];
-        System.out.println("DAO的真实实现类是：" + this.clazz.getName());
     }
 
     /**
@@ -42,24 +42,70 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     /**
      * 获取当前工作的Session
      */
+    protected Session openSession() {
+        return sessionFactory.openSession();
+    }
+
     protected Session getSession() {
         return this.sessionFactory.getCurrentSession();
     }
 
-    public void save(T entity) {
-        this.getSession().save(entity);
+    public void create(T entity) {
+        Session session = this.openSession();
+        try {
+            session.beginTransaction();
+            session.persist(entity);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
-    public void update(T entity) {
-        this.getSession().update(entity);
+    public T update(T entity) {
+        Session session = openSession();
+        try {
+            session.beginTransaction();
+            session.update(entity);
+            session.getTransaction().commit();
+        } catch(StaleStateException exception){
+            exception.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return entity;
     }
 
-    public void delete(Serializable id) {
-        this.getSession().delete(this.getById(id));
+    public void deleteById(Serializable id) {
+        T entity = getById(id);
+        delete(entity);
+    }
+
+    public void delete(T entity) {
+        Session session = openSession();
+        try {
+            session.beginTransaction();
+            session.delete(entity);
+            session.getTransaction().commit();
+        } catch(StaleStateException exception){
+            exception.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
     }
 
     public List<T> list() {
-        Session session = this.getSession();
+        Session session = this.openSession();
         List<T> tmpList = new ArrayList<T>();
         try {
             session.beginTransaction();

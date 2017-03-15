@@ -13,11 +13,11 @@ import java.util.List;
  */
 public interface BaseDao<T> {
 
-    public void save(T entity);
+    public void create(T entity);
 
-    public void update(T entity);
+    public T update(T entity);
 
-    public void delete(Serializable id);
+    public void deleteById(Serializable id);
 
     public List<T> list();
 
