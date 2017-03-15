@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Unicorn Admin</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="css/fullcalendar.css" />	
+		<link rel="stylesheet" href="css/unicorn.main.css" />
+		<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+	</head>
+	<body>
+		
+		
+		<div id="header">
+			<h1><a href="./dashboard.html">Unicorn Admin</a></h1>		
+		</div>
+            
+		<div id="sidebar">
+			<ul>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>部门管理</span></a>
+					<ul>
+						<li><a href="department-overview.html">部门概览</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>项目管理</span></a>
+					<ul>
+						<li><a href="">项目概览</a></li>
+						<li><a href="">创建项目</a></li>
+						<li><a href="">我的项目</a></li>
+					</ul>
+				</li>
+                <li class="submenu">
+                    <a href="#"><i class="icon icon-th-list"></i> <span>人员管理</span></a>
+                    <ul>
+                        <li><a href="">人员概览</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="icon icon-th-list"></i> <span>考勤管理</span> <span class="label">3</span></a>
+                    <ul>
+                        <li><a href="">请假申请</a></li>
+                        <li><a href="">请假审批</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="icon icon-th-list"></i> <span>会议管理</span> <span class="label">3</span></a>
+                    <ul>
+                        <li><a href="">我的会议</a></li>
+                        <li><a href="">发起会议</a></li>
+                    </ul>
+                </li>
+			</ul>
+		
+		</div>
+		
+		<div id="content">
+			<div id="content-header">
+				<h1>部门概览</h1>
+			</div>
+            <div id="tree"></div>
+		</div>
+		
+
+            <script src="js/excanvas.min.js"></script>
+            <script src="js/jquery-3.1.1.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/jquery.flot.min.js"></script>
+            <script src="js/jquery.flot.resize.min.js"></script>
+            <script src="js/jquery.peity.min.js"></script>
+            <script src="js/fullcalendar.min.js"></script>
+            <script src="js/unicorn.js"></script>
+            <script src="js/unicorn.dashboard.js"></script>
+            <script src="js/bootstrap-treeview.min.js"></script>
+            <script>
+                function getData() {
+                    var data = [
+                        {
+                            text: "Parent 1",
+                            href:"index.html",
+                            nodes: [
+                                {
+                                    text: "Child 1",
+                                    href:"text",
+                                    nodes: [
+                                        {
+                                            text: "Grandchild 1",
+                                            href:"text"
+                                        },
+                                        {
+                                            href:"text",
+                                            text: "Grandchild 2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    href:"text",
+                                    text: "Child 2"
+                                }
+                            ]
+                        },
+                        {
+                            href:"text",
+                            text: "Parent 2"
+                        },
+                        {
+                            href:"text",
+                            text: "Parent 3"
+                        },
+                        {
+                            href:"text",
+                            text: "Parent 4"
+                        },
+                        {
+                            href:"text",
+                            text: "Parent 5"
+                        }
+                    ];
+                    return data;
+                }
+                $('#tree').treeview({data: getData(),
+                    expandIcon: "glyphicon glyphicon-plus",
+                    collapseIcon:"glyphicon glyphicon-minus",
+                    nodeIcon:"glyphicon glyphicon-user",
+                    enableLinks: true,
+                    onhoverColor:"#428bca"
+                });
+            </script>
+    </body>
+</html>
