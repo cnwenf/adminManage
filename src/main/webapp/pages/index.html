@@ -23,6 +23,7 @@
 					<a href="#"><i class="icon icon-th-list"></i> <span>部门管理</span></a>
 					<ul>
 						<li><a href="department-overview.html">部门概览</a></li>
+                        <li><a href="department-detail.html">部门明细</a></li>
 					</ul>
 				</li>
 				<li class="submenu">
@@ -76,6 +77,11 @@
             <script src="js/unicorn.dashboard.js"></script>
             <script src="js/bootstrap-treeview.min.js"></script>
             <script>
+                $.post("/adminManage/userController/my", { "id": 2}, function (data) {
+                    if (data) {
+                        alert(data["username"]);
+                    }
+                })
                 function getData() {
                     var data = [
                         {

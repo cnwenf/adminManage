@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> getAllUsernames() {
-        return userDao.findAll();
+        return userDao.list();
+    }
+
+    public User getById(Integer id) {
+        return userDao.getById(id);
     }
 }

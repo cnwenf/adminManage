@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -15,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by mark on 4/24/15.
  */
 
+@RequestMapping("/userController")
 @Controller
-@RequestMapping("/")
 public class MainController {
 
     @Autowired
     private UserService userService;
     //wenfeng
-    @RequestMapping("")
+    @RequestMapping("/addUser")
     public String home(){
         List<User> us = new ArrayList<User>();
         User u = new User();
@@ -39,6 +41,12 @@ public class MainController {
     @ResponseBody
     public List<User> json(){
       return userService.getAllUsernames();
+    }
+
+    @RequestMapping(value = "/my", method = RequestMethod.POST)
+    @ResponseBody
+    public User getById(@RequestParam(required=true) Integer id){
+        return userService.getById(id);
     }
 
 }
