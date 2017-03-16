@@ -20,7 +20,7 @@ public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
 
-    @RequestMapping("/structure")
+    @RequestMapping(value = "/structure", method = RequestMethod.POST)
     @ResponseBody
     public String structure(String companyId){
         return departmentService.getDepartmentStructure(companyId).toString();
