@@ -1,9 +1,9 @@
-package com.bupt.sse.adminManage.entity;
+package com.bupt.sse.adminManage.entity.common;
 
 import java.io.Serializable;
 
 /**
- * Created by WenFe on 2017/3/15.
+ * Created by WenFeng on 2017/3/15.
  */
 public class BasePK implements Serializable {
     private String companyId;

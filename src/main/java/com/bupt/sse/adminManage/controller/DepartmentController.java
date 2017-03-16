@@ -1,9 +1,7 @@
 package com.bupt.sse.adminManage.controller;
 
 import com.bupt.sse.adminManage.entity.DepartmentEntity;
-import com.bupt.sse.adminManage.entity.User;
 import com.bupt.sse.adminManage.service.DepartmentService;
-import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by WenFe on 2017/3/15.
+ * Created by WenFeng on 2017/3/15.
  */
 @RequestMapping("/department")
 @Controller
@@ -24,8 +22,8 @@ public class DepartmentController {
 
     @RequestMapping("/structure")
     @ResponseBody
-    public String structure(){
-        return departmentService.getDepartmentStructure().toString();
+    public String structure(String companyId){
+        return departmentService.getDepartmentStructure(companyId).toString();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)

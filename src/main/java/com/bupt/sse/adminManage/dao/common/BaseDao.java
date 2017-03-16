@@ -7,9 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * BaseDAO 定义DAO的通用操作
- *
- * @author Monday
+ * Created by WenFeng on 2017/3/15.
  */
 public interface BaseDao<T> {
 

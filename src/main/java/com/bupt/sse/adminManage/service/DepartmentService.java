@@ -1,7 +1,7 @@
 package com.bupt.sse.adminManage.service;
 
-import com.bupt.sse.adminManage.dao.DepartmentDao;
-import com.bupt.sse.adminManage.entity.BasePK;
+import com.bupt.sse.adminManage.dao.iface.DepartmentDao;
+import com.bupt.sse.adminManage.entity.common.BasePK;
 import com.bupt.sse.adminManage.entity.DepartmentEntity;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by WenFe on 2017/3/15.
+ * Created by WenFeng on 2017/3/15.
  */
 @Service("departmentService")
 public class DepartmentService {
@@ -24,12 +24,12 @@ public class DepartmentService {
     private static String text = "text";
     private static String href = "href";
 
-    public JSONArray getDepartmentStructure() {
-        List<DepartmentEntity> departmentEntities = departmentDao.list();
+    public JSONArray getDepartmentStructure(String companyId) {
+        List<DepartmentEntity> departmentEntities = list(companyId);
         List<JSONObject> jsonObjects = entity2JSON(departmentEntities);
         for (JSONObject childObject : jsonObjects) {
             childObject.put(text, childObject.getString("name"));
-            childObject.put(href, "department-detail.html?id=" + childObject.getString("id"));
+            childObject.put(href, "department-detail.html?companyId="+companyId+"id=" + childObject.getString("id"));
             if (childObject.has("parentId")) {
                 String parentId = childObject.getString("parentId");
                 for (JSONObject parentObject : jsonObjects) {

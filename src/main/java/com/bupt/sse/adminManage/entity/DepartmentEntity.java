@@ -1,14 +1,16 @@
 package com.bupt.sse.adminManage.entity;
 
+import com.bupt.sse.adminManage.entity.common.BasePK;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 /**
- * Created by WenFe on 2017/3/15.
+ * Created by WenFeng on 2017/3/15.
  */
 @Entity(name="departmentInfo")
-@IdClass(com.bupt.sse.adminManage.entity.BasePK.class)
+@IdClass(BasePK.class)
 public class DepartmentEntity {
     @Id
     private String id;

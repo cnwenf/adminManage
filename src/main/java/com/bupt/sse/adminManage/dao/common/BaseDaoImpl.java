@@ -16,9 +16,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.StaleStateException;
 
 /**
- * BaseDaoImpl 定义DAO的通用操作的实现
- *
- * @author Monday
+ * Created by WenFeng on 2017/3/15.
  */
 @SuppressWarnings("unchecked")
 public class BaseDaoImpl<T> implements BaseDao<T> {
