@@ -6,11 +6,13 @@ $(document).ready(function(){
 
 	var login = $('#loginform');
 	var recover = $('#recoverform');
+    var div = $('loginbox');
 	var speed = 400;
 
 	$('#to-recover').click(function(){
 		login.fadeTo(speed,0.01).css('z-index','100');
 		recover.fadeTo(speed,1).css('z-index','200');
+        div.css("height", "300px");
 	});
 
 	$('#to-login').click(function(){
