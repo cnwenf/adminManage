@@ -6,18 +6,34 @@ $(document).ready(function(){
 
 	var login = $('#loginform');
 	var recover = $('#recoverform');
-    var div = $('loginbox');
+    var loginbox = $('#loginbox');
 	var speed = 400;
+    $('#registerBtn').click(function(){
+
+    });
+    $('#loginBtn').click(function(){
+        var name = $('#loginName').val();
+        var password = $('#loginPass').val();
+        if (!isEmptyObject(name) && !isEmptyObject(password)){
+            $.post("/adminManage/user/login",{"name":name, "password":password},
+                function (data) {
+                    alert(data)
+                });
+        } else {
+            alert("用户名或密码不能为空！")
+        }
+    });
 
 	$('#to-recover').click(function(){
 		login.fadeTo(speed,0.01).css('z-index','100');
 		recover.fadeTo(speed,1).css('z-index','200');
-        div.css("height", "300px");
+        loginbox.css("height", "230");
 	});
 
 	$('#to-login').click(function(){
 		recover.fadeTo(speed,0.01).css('z-index','100');
 		login.fadeTo(speed,1).css('z-index','200');
+        loginbox.css("height", "210");
 	});
     
     if($.browser.msie == true && $.browser.version.slice(0,3) < 10) {
@@ -39,8 +55,9 @@ $(document).ready(function(){
             }
         });
     });
+    }
 
-        
-        
+    function login() {
+
     }
 });

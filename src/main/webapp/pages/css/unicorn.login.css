@@ -21,20 +21,20 @@ body {
 #head {
     margin-top: 20px;
     text-align: right;
-    min-height: 50px;
+    min-height: 35px;
     background: rgba(255,255,255,0.2);
 }
 #head a {
     position: relative;
     font-size: 15px;
     color: #ffffff;
-    margin-top: 50%;
+    margin-top: 10px;
     margin-right: 20px ;
 }
 #logo, #loginbox {
     width: 400px;
     margin: auto;
-    min-height: 230px;
+    min-height: 210px;
     height:auto;
     position: relative;
 }
@@ -80,8 +80,10 @@ body {
 #loginbox form#loginform {
 	z-index: 200;
 }
-
-#loginbox form#recoverform {
+#loginbox form#registerform {
+    z-index: 50;
+}
+#loginbox form#registerform {
 	z-index: 100;
 	opacity: 0;
     display:none;
@@ -89,11 +91,11 @@ body {
     height: auto;
 }
 
-#loginbox form#recoverform .form-actions {
+#loginbox form#registerform .form-actions {
     margin-top: 27px;
 }
 
-#loginbox form#recoverform .control-group {
+#loginbox form#registerform .control-group {
 	margin: 23px 0;
 
 }

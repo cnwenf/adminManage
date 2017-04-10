@@ -6,6 +6,8 @@ import com.bupt.sse.adminManage.dao.iface.UserDao;
 import com.bupt.sse.adminManage.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
+
 /**
  * Created by WenFe on 2017/3/16.
  */

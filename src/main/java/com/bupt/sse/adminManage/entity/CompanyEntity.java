@@ -2,12 +2,13 @@ package com.bupt.sse.adminManage.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by WenFeng on 2017/3/16.
  */
 @Entity(name="companyInfo")
-public class CompanyEntity {
+public class CompanyEntity implements Serializable{
     @Id
     private String id;
     private String name;

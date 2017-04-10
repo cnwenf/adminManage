@@ -16,10 +16,11 @@ public class UserService {
     @Resource
     private UserDao userDao;
 
-    public void create(String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment) {
+    public void create(String displayName, String name, String password, String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment) {
         UserEntity userEntity = new UserEntity();
-        String id = UUID.randomUUID().toString();
-        userEntity.setId(id);
+        userEntity.setDisplayName(displayName);
+        userEntity.setName(name);
+        userEntity.setPassword(password);
         userEntity.setIDCard(IDCard);
         userEntity.setWorkNum(workNum);
         userEntity.setDepartmentId(departmentId);
@@ -31,6 +32,15 @@ public class UserService {
         userEntity.setHistory(history);
         userEntity.setPayment(payment);
         userDao.create(userEntity);
+    }
+
+    public boolean login(String name, String password) {
+        UserEntity userEntity = userDao.getById(name);
+        if(null != userEntity && userEntity.getPassword().equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public List<UserEntity> list() {

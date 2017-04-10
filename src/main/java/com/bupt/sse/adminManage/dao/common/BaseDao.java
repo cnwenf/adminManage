@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * Created by WenFeng on 2017/3/15.
  */
-public interface BaseDao<T> {
+public interface BaseDao<T extends Serializable> {
 
-    public void create(T entity);
+    public boolean create(T entity);
 
     public T update(T entity);
 
@@ -20,6 +20,8 @@ public interface BaseDao<T> {
     public List<T> list();
 
     public T getById(Serializable id);
+
+    public List<T> get(T entity);
 
     public List<T> findByHQL(String hql, Object... params);
 

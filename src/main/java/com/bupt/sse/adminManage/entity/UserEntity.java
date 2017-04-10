@@ -2,14 +2,17 @@ package com.bupt.sse.adminManage.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by WenFeng on 2017/3/16.
  */
 @Entity(name="userInfo")
-public class UserEntity {
+public class UserEntity implements Serializable{
     @Id
-    private String id;
+    private String name;
+    private String displayName;
+    private String password;
     private String IDCard;
     private String workNum;
     private String departmentId;
@@ -20,14 +23,6 @@ public class UserEntity {
     private int status;
     private String history;
     private int payment;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getIDCard() {
         return IDCard;
@@ -107,5 +102,29 @@ public class UserEntity {
 
     public void setPayment(int payment) {
         this.payment = payment;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

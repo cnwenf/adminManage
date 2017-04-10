@@ -5,13 +5,14 @@ import com.bupt.sse.adminManage.entity.common.BasePK;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import java.io.Serializable;
 
 /**
  * Created by WenFeng on 2017/3/15.
  */
 @Entity(name="departmentInfo")
 @IdClass(BasePK.class)
-public class DepartmentEntity {
+public class DepartmentEntity implements Serializable{
     @Id
     private String id;
     private String name;
