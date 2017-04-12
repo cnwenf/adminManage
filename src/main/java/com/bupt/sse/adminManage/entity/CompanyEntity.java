@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by WenFeng on 2017/3/16.
  */
 @Entity(name="companyInfo")
-public class CompanyEntity implements Serializable{
+public class CompanyEntity {
     @Id
     private String id;
     private String name;
@@ -17,7 +17,6 @@ public class CompanyEntity implements Serializable{
     private String email;
     private String phone;
     private String introduce;
-
     public String getId() {
         return id;
     }

@@ -1,5 +1,7 @@
 package com.bupt.sse.adminManage.entity;
 
+import com.bupt.sse.adminManage.entity.common.Roles;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -8,13 +10,15 @@ import java.io.Serializable;
  * Created by WenFeng on 2017/3/16.
  */
 @Entity(name="userInfo")
-public class UserEntity implements Serializable{
+public class UserEntity {
     @Id
     private String name;
     private String displayName;
     private String password;
     private String IDCard;
     private String workNum;
+    private String companyId;
+    private Roles role;
     private String departmentId;
     private String projectId;
     private String phone;
@@ -126,5 +130,21 @@ public class UserEntity implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
     }
 }

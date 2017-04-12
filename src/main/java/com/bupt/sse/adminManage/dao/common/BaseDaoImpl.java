@@ -19,27 +19,15 @@ import org.hibernate.StaleStateException;
  * Created by WenFeng on 2017/3/15.
  */
 @SuppressWarnings("unchecked")
-public class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
+public class BaseDaoImpl<T> implements BaseDao<T> {
 
     private Class<T> clazz;
-
-    /**
-     * 通过构造方法指定DAO的具体实现类
-     */
     public BaseDaoImpl() {
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         clazz = (Class<T>) type.getActualTypeArguments()[0];
     }
-
-    /**
-     * 向DAO层注入SessionFactory
-     */
     @Resource
     private SessionFactory sessionFactory;
-
-    /**
-     * 获取当前工作的Session
-     */
     protected Session openSession() {
         return sessionFactory.openSession();
     }
@@ -49,19 +37,21 @@ public class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
     }
 
     public boolean create(T entity) {
+        boolean result = true;
         Session session = this.openSession();
         try {
             session.beginTransaction();
             session.persist(entity);
             session.getTransaction().commit();
+            result = true;
         } catch (Exception e) {
             // TODO Auto-generated catch block
+            result = false;
             e.printStackTrace();
-            return false;
         } finally {
             session.close();
+            return result;
         }
-        return true;
     }
 
     public T update(T entity) {
@@ -123,9 +113,6 @@ public class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
     public T getById(Serializable id) {
         return (T) this.getSession().get(this.clazz, id);
-    }
-    public List<T> get (T entity) {
-        return (List<T>) this.getSession().get(this.clazz, entity);
     }
 
     public List<T> findByHQL(String hql, Object... params) {

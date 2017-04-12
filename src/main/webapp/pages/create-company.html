@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>行政管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/unicorn.login.css" />
+</head>
+<body>
+<div id="head">
+    <a href="#">常见问题</a>
+    <a href="#" >使用手册</a>
+    <a href="#" >关于我们</a>
+    <a href="#" >加入我们</a>
+</div>
+<div id="logo">
+    <img src="img/logo.png" alt="" />
+</div>
+<div id="loginbox" style="height: 320px">
+    <form id="loginform" class="form-vertical">
+        <p>您还未有任何公司，请先创建公司</p>
+        <div class="control-group">
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-user"></i></span><input id="name" type="text" placeholder="公司名称" />
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-map-marker"></i></span><input id="address" type="text" placeholder="公司地址" />
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-envelope"></i></span><input id="email" type="text" placeholder="联系邮件" />
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-th"></i></span><input id="phone" type="text" placeholder="联系电话" />
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-star"></i></span><input id="introduce" type="text" placeholder="公司简介" />
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-right"><input style="height: 20px;width: 60px" id="sureBtn" class="btn btn-inverse" value="确认"/></span>
+        </div>
+    </form>
+
+</div>
+
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/create-company.js"></script>
+</body>
+</html>

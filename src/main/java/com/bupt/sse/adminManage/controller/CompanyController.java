@@ -34,12 +34,12 @@ public class CompanyController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public void create(String name, String ownerId,
+    public CompanyEntity create(String name, String ownerId,
                        @RequestParam(required=false) String address,
                        @RequestParam(required=false) String email,
                        @RequestParam(required=false) String phone,
                        @RequestParam(required=false) String introduce) {
-        companyService.create(name, ownerId, address, email, phone, introduce);
+        return companyService.create(name, ownerId, address, email, phone, introduce);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)

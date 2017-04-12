@@ -1,10 +1,11 @@
 package com.bupt.sse.adminManage.controller;
 
+import com.bupt.sse.adminManage.entity.UserEntity;
 import com.bupt.sse.adminManage.service.UserService;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -20,7 +21,12 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public boolean login(String name, String password) {
+    public UserEntity login(String name, String password) {
         return userService.login(name, password);
+    }
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean login(String IDCard, String displayName, String password) {
+        return userService.create(displayName, IDCard, password, IDCard, null, null, null, null, null, null, 0, null, 0);
     }
 }

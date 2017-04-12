@@ -1,7 +1,10 @@
 package com.bupt.sse.adminManage.service;
 
 import com.bupt.sse.adminManage.dao.iface.CompanyDao;
+import com.bupt.sse.adminManage.dao.iface.UserDao;
 import com.bupt.sse.adminManage.entity.CompanyEntity;
+import com.bupt.sse.adminManage.entity.UserEntity;
+import com.bupt.sse.adminManage.entity.common.Roles;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,8 +17,10 @@ import java.util.UUID;
 public class CompanyService {
     @Resource
     private CompanyDao companyDao;
+    @Resource
+    private UserDao userDao;
 
-    public void create(String name, String ownerId, String address, String email, String phone, String introduce) {
+    public CompanyEntity create(String name, String ownerId, String address, String email, String phone, String introduce) {
         CompanyEntity companyEntity = new CompanyEntity();
         String id = UUID.randomUUID().toString();
         companyEntity.setId(id);
@@ -25,7 +30,15 @@ public class CompanyService {
         companyEntity.setEmail(email);
         companyEntity.setPhone(phone);
         companyEntity.setIntroduce(introduce);
-        companyDao.create(companyEntity);
+        if(companyDao.create(companyEntity)){
+            UserEntity userEntity = userDao.getById(ownerId);
+            userEntity.setCompanyId(companyEntity.getId());
+            userEntity.setRole(Roles.companyOwner);
+            userDao.update(userEntity);
+            return companyEntity;
+        } else {
+            return null;
+        }
     }
 
     public List<CompanyEntity> list() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<title>行政管理系统</title>
 		<meta charset="UTF-8" />
@@ -59,17 +59,19 @@
 		</div>
 		<div id="content">
 		</div>
-
-
             <script src="js/lib/excanvas.min.js"></script>
             <script src="js/lib/jquery-3.1.1.min.js"></script>
             <script src="js/lib/bootstrap-3.3.7.min.js"></script>
             <script src="js/lib/jquery.flot.min.js"></script>
             <script src="js/lib/jquery.flot.resize.min.js"></script>
             <script src="js/lib/jquery.peity.min.js"></script>
-            <script src="js/lib/fullcalendar.min.js"></script>
-            <script src="js/lib/unicorn.js"></script>
             <script src="js/lib/unicorn.dashboard.js"></script>
             <script src="js/lib/bootstrap-treeview.min.js"></script>
+		<script>
+			$.post("/adminManage/department/create", {"companyId":"2a14906e-b01a-4d9a-93e4-ac3740bbe33b", "name":"1Node"},
+					function(data) {
+
+					});
+		</script>
     </body>
 </html>

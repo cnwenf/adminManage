@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity(name="departmentInfo")
 @IdClass(BasePK.class)
-public class DepartmentEntity implements Serializable{
+public class DepartmentEntity {
     @Id
     private String id;
     private String name;
