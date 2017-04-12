@@ -45,14 +45,14 @@ public class DepartmentService {
         }
         JSONArray result = new JSONArray();
         for (JSONObject jsonObject : jsonObjects) {
-            if (!jsonObject.has("parentId")) {
+            if (!jsonObject.has("parentId") || "".equals(jsonObject.getString("parentId"))) {
                 result.put(jsonObject);
             }
         }
         return result;
     }
 
-    public void create(String companyId, String name, String description, String parentId, String ownerId) {
+    public boolean create(String companyId, String name, String description, String parentId, String ownerId) {
         DepartmentEntity departmentEntity = new DepartmentEntity();
         String id = UUID.randomUUID().toString();
         departmentEntity.setCompanyId(companyId);
@@ -61,7 +61,7 @@ public class DepartmentService {
         departmentEntity.setDescription(description);
         departmentEntity.setParentId(parentId);
         departmentEntity.setOwnerId(ownerId);
-        departmentDao.create(departmentEntity);
+        return departmentDao.create(departmentEntity);
     }
 
     public List<DepartmentEntity> list(String companyId) {

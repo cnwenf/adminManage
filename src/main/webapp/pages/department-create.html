@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>行政管理系统</title>
     <meta charset="UTF-8" />
@@ -23,7 +23,8 @@
             <a href="#"><i class="icon icon-th-list"></i> <span>部门管理</span></a>
             <ul>
                 <li><a href="department-overview.html">部门概览</a></li>
-                <li class="active"><a>部门明细</a></li>
+                <li ><a href="department-detail.html">部门明细</a></li>
+                <li class="active"><a>创建部门</a></li>
             </ul>
         </li>
         <li class="submenu">
@@ -77,29 +78,29 @@
                             <div class="control-group">
                                 <label class="control-label">部门名称</label>
                                 <div class="controls">
-                                    <input type="text" />
+                                    <input id="dpmName" type="text" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">上级部门</label>
                                 <div class="controls">
-                                    <input type="text" />
+                                    <input id="parentDpm" type="text" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">部门主管</label>
                                 <div class="controls">
-                                    <input type="text" />
+                                    <input id="ownerId" type="text" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">部门简介</label>
                                 <div class="controls">
-                                    <textarea></textarea>
+                                    <textarea id="introduce"></textarea>
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-primary">确定</button>
+                                <button type="submit" class="btn btn-primary" onclick="sureBtn()">确定</button>
                             </div>
                         </form>
                     </div>
@@ -121,5 +122,7 @@
 <script src="js/lib/unicorn.js"></script>
 <script src="js/lib/unicorn.dashboard.js"></script>
 <script src="js/lib/bootstrap-treeview.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/department-create.js"></script>
 </body>
 </html>

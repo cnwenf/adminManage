@@ -1,8 +1,10 @@
 $(document).ready(function(){
-    var recive = getRequest();
-    var cache = {};
-    $.data(cache, "userInfo", recive);
-    $.post("/adminManage/department/structure",{"companyId":recive["companyId"]},
+    var userInfo = getRequest();
+    if ($.isEmptyObject(userInfo)) {
+        userInfo = getLocalJson("userInfo");
+    }
+    setLocalJson("userInfo", userInfo);
+    $.post("/adminManage/department/structure",{"companyId":userInfo["companyId"]},
         function (data) {
             $('#tree').treeview({data: data,
                 expandIcon: "glyphicon glyphicon-plus",

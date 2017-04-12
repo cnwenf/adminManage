@@ -18,3 +18,13 @@ function getRequest() {
     }
     return theRequest;
 }
+
+function setLocalJson(key, jsonData) {
+    var data = JSON.stringify(jsonData);
+    window.localStorage.setItem(key, data);
+}
+
+function getLocalJson(key) {
+    var data = window.localStorage.getItem(key);
+    return JSON.parse(data);
+}

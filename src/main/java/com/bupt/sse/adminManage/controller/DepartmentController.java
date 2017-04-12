@@ -28,12 +28,12 @@ public class DepartmentController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public void create(String companyId,
+    public boolean create(String companyId,
                         @RequestParam(required=true) String name,
                        @RequestParam(required=false) String description,
                        @RequestParam(required=false) String parentId,
                        @RequestParam(required=false) String ownerId){
-        departmentService.create(companyId, name, description, parentId, ownerId);
+        return departmentService.create(companyId, name, description, parentId, ownerId);
     }
 
     @RequestMapping("/list")
