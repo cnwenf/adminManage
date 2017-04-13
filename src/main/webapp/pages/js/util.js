@@ -28,3 +28,11 @@ function getLocalJson(key) {
     var data = window.localStorage.getItem(key);
     return JSON.parse(data);
 }
+
+var api = {
+    department : {
+        structure: "/adminManage/department/structure",
+        get: "/adminManage/department/get",
+        list: "/adminManage/department/list"
+    }
+}

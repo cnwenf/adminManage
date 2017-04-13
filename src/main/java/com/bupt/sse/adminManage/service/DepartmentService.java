@@ -29,7 +29,7 @@ public class DepartmentService {
         List<JSONObject> jsonObjects = entity2JSON(departmentEntities);
         for (JSONObject childObject : jsonObjects) {
             childObject.put(text, childObject.getString("name"));
-            childObject.put(href, "department-detail.html?companyId="+companyId+",id=" + childObject.getString("id"));
+            childObject.put(href, "department-detail.html?companyId="+companyId+"&id=" + childObject.getString("id"));
             if (childObject.has("parentId")) {
                 String parentId = childObject.getString("parentId");
                 for (JSONObject parentObject : jsonObjects) {

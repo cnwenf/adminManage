@@ -2,6 +2,8 @@ package com.bupt.sse.adminManage.controller;
 
 import com.bupt.sse.adminManage.entity.DepartmentEntity;
 import com.bupt.sse.adminManage.service.DepartmentService;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +22,7 @@ public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
 
-    @RequestMapping(value = "/structure", method = RequestMethod.POST)
+    @RequestMapping(value = "/structure", method = RequestMethod.POST, produces = "text/html; charset=utf-8")
     @ResponseBody
     public String structure(String companyId){
         return departmentService.getDepartmentStructure(companyId).toString();
