@@ -45,8 +45,20 @@ public class UserService {
 
     }
 
-    public List<UserEntity> list() {
-        return userDao.list();
+    public List<UserEntity> list(String companyId) {
+        List<UserEntity> userEntities = userDao.list();
+        for (UserEntity userEntity : userEntities) {
+            if (userEntity.getCompanyId().equals(companyId)) {
+                continue;
+            } else {
+                userEntities.remove(userEntity);
+            }
+        }
+        return userEntities;
+    }
+
+    public UserEntity get(String id) {
+        return userDao.getById(id);
     }
 
 //    public void delete()

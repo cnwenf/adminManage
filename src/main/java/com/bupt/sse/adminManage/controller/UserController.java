@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by WenFe on 2017/4/10.
@@ -28,5 +29,15 @@ public class UserController {
     @ResponseBody
     public boolean login(String IDCard, String displayName, String password) {
         return userService.create(displayName, IDCard, password, IDCard, null, null, null, null, null, null, 0, null, 0);
+    }
+    @RequestMapping(value ="/list", method = RequestMethod.POST)
+    @ResponseBody
+    public List<UserEntity> list(String companyId) {
+        return userService.list(companyId);
+    }
+    @RequestMapping(value ="/get", method = RequestMethod.POST)
+    @ResponseBody
+    public UserEntity get(String id) {
+        return userService.get(id);
     }
 }

@@ -34,5 +34,13 @@ var api = {
         structure: "/adminManage/department/structure",
         get: "/adminManage/department/get",
         list: "/adminManage/department/list"
+    },
+    user: {
+        list: "/adminManage/user/list",
+        get:"/adminManage/user/get"
     }
+}
+
+function httpPost(url, args, callback) {
+    $.post(url, args, callback);
 }
