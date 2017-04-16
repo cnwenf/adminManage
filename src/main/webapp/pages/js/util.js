@@ -37,10 +37,19 @@ var api = {
     },
     user: {
         list: "/adminManage/user/list",
-        get:"/adminManage/user/get"
+        detail:"/adminManage/user/detail",
+        create:"/adminManage/user/create"
     }
 }
 
-function httpPost(url, args, callback) {
+function httpSyncPost(url, args, callback) {
+    $.ajaxSetup({
+        async : false
+    });
     $.post(url, args, callback);
+}
+function string2ChangeLine(s) {
+    //textare换行失败
+    s =s.replace("↵", "/n");
+    return s;
 }

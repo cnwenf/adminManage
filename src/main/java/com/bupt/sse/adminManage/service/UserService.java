@@ -17,13 +17,14 @@ public class UserService {
     @Resource
     private UserDao userDao;
 
-    public boolean create(String displayName, String name, String password, String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment) {
+    public boolean create(String displayName, String name, String password, String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment,String companyId) {
         UserEntity userEntity = new UserEntity();
         userEntity.setDisplayName(displayName);
         userEntity.setName(name);
         userEntity.setPassword(password);
         userEntity.setIDCard(IDCard);
         userEntity.setWorkNum(workNum);
+        userEntity.setCompanyId(companyId);
         userEntity.setDepartmentId(departmentId);
         userEntity.setProjectId(projectId);
         userEntity.setPhone(phone);

@@ -4,17 +4,17 @@
 var initArgs = getRequest();
 $(document).ready(function() {
 
-    httpPost(api.department.get, {"companyId":initArgs["companyId"], "id":initArgs["id"]},readyCallback);
+    httpSyncPost(api.department.get, {"companyId":initArgs["companyId"], "id":initArgs["id"]},readyCallback);
 });
 function readyCallback(data) {
-    httpPost(api.department.get, {"companyId":initArgs["companyId"], "id":data["parentId"]}, setParentName);
-    httpPost(api.user.get, {"name":data["ownerId"]}, setOwnerName);
+    httpSyncPost(api.department.get, {"companyId":initArgs["companyId"], "id":data["parentId"]}, setParentName);
+    httpSyncPost(api.user.detail, {"name":data["ownerId"]}, setOwnerName);
     $("#dpmName").text(data["name"]);
-    $("#introduce").text(data["description"]);
+    $("#introduce").text(string2ChangeLine(data["description"]));
 }
 function setParentName(data) {
-    $("#parentId").text(data["name"]);
+    $("#parentId").text($.isEmptyObject(data["name"])?data["name"]:"--");
 }
 function setOwnerName(data) {
-    $("#ownerId").text(data["displayName"]);
+    $("#ownerId").text($.isEmptyObject(data["displayName"])?data["displayName"]:"--");
 }
