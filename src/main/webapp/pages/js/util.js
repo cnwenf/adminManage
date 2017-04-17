@@ -53,3 +53,5 @@ function string2ChangeLine(s) {
     s =s.replace("↵", "/n");
     return s;
 }
+
+var projectsInfo = "projects";

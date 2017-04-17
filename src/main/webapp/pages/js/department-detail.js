@@ -13,8 +13,8 @@ function readyCallback(data) {
     $("#introduce").text(string2ChangeLine(data["description"]));
 }
 function setParentName(data) {
-    $("#parentId").text($.isEmptyObject(data["name"])?data["name"]:"--");
+    $("#parentId").text($.isEmptyObject(data["name"])?"--":data["name"]);
 }
 function setOwnerName(data) {
-    $("#ownerId").text($.isEmptyObject(data["displayName"])?data["displayName"]:"--");
+    $("#ownerId").text($.isEmptyObject(data["displayName"])?"--":data["displayName"]);
 }
