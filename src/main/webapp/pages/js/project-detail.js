@@ -28,6 +28,8 @@ function init() {
         document.getElementById("owner").setAttribute("href", jump_str);
         $("#startDate").text(project["startDate"]);
         $("#endDate").text(project["endDate"]);
+        $("#status").text(project["status"]);
+        $("#status").css("color", projectStatusColor(project["status"]));
         var projectsPersons = project["persons"];
         var span = document.getElementById("persons");
         for (var i in projectsPersons) {

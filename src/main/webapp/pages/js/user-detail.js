@@ -14,6 +14,7 @@ function setInfo(data) {
     $("#phone").text(data["phone"]);
     $("#email").text(data["email"]);
     $("#introduce").text(data["history"]);
+    $("#workNum").text(data["workNum"]);
     httpSyncPost(api.department.get, {"companyId": userInfo["companyId"], "id": data["departmentId"]}, setDpm);
 }
 function setProjects() {

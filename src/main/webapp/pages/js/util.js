@@ -68,4 +68,15 @@ function projectStatusClass(state) {
             return "done";
     }
 }
+function projectStatusColor(state) {
+    switch (state) {
+        case projectStatus.run:
+            return "in-progress";
+        case projectStatus.delay:
+            return "pending";
+        case projectStatus.done:
+            return "#75B468";
+    }
+
+}
 var projectsInfo = "projects";
