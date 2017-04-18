@@ -403,7 +403,7 @@
         if (method !== 'init'){
           ms.trigger('change');
           if (typeof that.options.afterSelect === 'function') {
-            that.options.afterSelect.call(this, options);
+            that.options.afterSelect.call(this, options[0]);
           }
         }
       }
@@ -445,7 +445,7 @@
         }
         ms.trigger('change');
         if (typeof that.options.afterDeselect === 'function') {
-          that.options.afterDeselect.call(this, value);
+          that.options.afterDeselect.call(this, options[0]);
         }
       }
     },

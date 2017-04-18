@@ -3,13 +3,19 @@
  */
 var projects = getLocalJson(projectsInfo);
 var userInfo = getLocalJson("userInfo");
+var personsSelect = [];
 $(document).ready(function() {
     $('#persons').multiSelect({
-    afterSelect: function(values){
-        alert("Select value: "+values);
+    afterSelect: function(options){
+        personsSelect.push({"text":options.text, "id": options.value});
     },
-    afterDeselect: function(values){
-        alert("Deselect value: "+values);
+    afterDeselect: function(options){
+        for (var i in personsSelect) {
+            var id = personsSelect[i]["id"];
+            if (id == options.value) {
+                personsSelect.splice(i, 1);
+            }
+        }
     }
     });
     $("#startDate").datepicker({
@@ -33,9 +39,11 @@ $(document).ready(function() {
         function (data) {
             if(data) {
                 var ownerSelect = $("#ownerSelect");
+                var personsSelect = $("#persons");
                 for (var index in data) {
                     var varItem = new Option(data[index]["displayName"], data[index]["name"]);
                     ownerSelect.append(varItem);
+                    $("#persons").multiSelect('addOption', { value: data[index]["name"], text: data[index]["displayName"]});
                 }
             } else {
             }
@@ -52,14 +60,23 @@ function sureBtn() {
     var startDate = $("#startDate").val();
     var endDate = $("#endDate").val();
     var json = {
-        "name": name,
-        "dpmSelectId": dpmSelectId,
-        "dpmSelectText": dpmSelectText,
-        "ownerSelectId": ownerSelectId,
-        "ownerSelectText": ownerSelectText,
+        "companyId":userInfo["companyId"],
+        "project": {
+            "text":name,
+            "id":data["data"].length
+        },
+        "dpm": {
+            "text": dpmSelectText,
+            "id": dpmSelectId
+        },
+        "owner": {
+            "text": ownerSelectText,
+            "id": ownerSelectId
+        },
         "introduce": introduce,
         "startDate": startDate,
         "endDate": endDate,
+        "persons": personsSelect,
         "status": projectStatus.run
     };
     data["data"].push(json);

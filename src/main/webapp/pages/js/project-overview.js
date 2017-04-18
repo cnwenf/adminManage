@@ -40,11 +40,14 @@ function init() {
 }
 
 function yanshi() {
-    var data = {data: []};
+    var data = $.isEmptyObject(projects)? {"data":[]} : projects;
+    if (data["data"].length >= 3) {
+        return;
+    }
     var json = {
         "companyId":"abb4237d-1359-49f0-8223-2f4c0317b0ec",
         "project": {
-            "id":"1",
+            "id":data["data"].length,
             "text": "GPU虚拟化"
         },
         "dpm": {
@@ -56,8 +59,9 @@ function yanshi() {
             "id": "46000619940813231X"
         },
         "introduce": "支持kvm虚拟化技术下的GPU共享",
-        "startDate": "",
-        "endDate": "",
+        "startDate": "18/04/2017",
+        "persons":[{"text":"文峰", "id":"46000619940813231X"}, {"text":"纵柯", "id":"46000119940813231X"}],
+        "endDate": "21/04/2017",
         "status": projectStatus.run
     };
     data["data"].push(json);
@@ -65,7 +69,7 @@ function yanshi() {
         "companyId":"abb4237d-1359-49f0-8223-2f4c0317b0ec",
         "project": {
             "text":"磁盘QoS",
-            "id":"2"
+            "id":data["data"].length
         },
         "dpm": {
             "text": "ECS",
@@ -76,8 +80,9 @@ function yanshi() {
             "id": "46000619940813231X"
         },
         "introduce": "支持数据盘QoS",
-        "startDate": "",
-        "endDate": "",
+        "persons":[{"text":"文峰", "id":"46000619940813231X"}, {"text":"纵柯", "id":"46000119940813231X"}],
+        "startDate": "18/04/2017",
+        "endDate": "18/04/2017",
         "status": projectStatus.done
     };
     data["data"].push(json2);
@@ -85,7 +90,7 @@ function yanshi() {
         "companyId":"abb4237d-1359-49f0-8223-2f4c0317b0ec",
         "project": {
             "text":"自动快照策略",
-            "id":"3"
+            "id":data["data"].length
         },
         "dpm": {
             "text": "ECS",
@@ -96,8 +101,9 @@ function yanshi() {
             "id": "46000619940813231X"
         },
         "introduce": "支持制定自动快照策略",
-        "startDate": "",
-        "endDate": "",
+        "persons":[{"text":"文峰", "id":"46000619940813231X"}, {"text":"纵柯", "id":"46000119940813231X"}],
+        "startDate": "18/04/2017",
+        "endDate": "18/04/2017",
         "status": projectStatus.delay
     };
     data["data"].push(json3);
