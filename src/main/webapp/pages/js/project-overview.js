@@ -59,9 +59,9 @@ function yanshi() {
             "id": "46000619940813231X"
         },
         "introduce": "支持kvm虚拟化技术下的GPU共享",
-        "startDate": "18/04/2017",
+        "startDate": "04/18/2017",
         "persons":[{"text":"文峰", "id":"46000619940813231X"}, {"text":"纵柯", "id":"46000119940813231X"}],
-        "endDate": "21/04/2017",
+        "endDate": "04/21/2017",
         "status": projectStatus.run
     };
     data["data"].push(json);
@@ -81,8 +81,8 @@ function yanshi() {
         },
         "introduce": "支持数据盘QoS",
         "persons":[{"text":"文峰", "id":"46000619940813231X"}, {"text":"纵柯", "id":"46000119940813231X"}],
-        "startDate": "18/04/2017",
-        "endDate": "18/04/2017",
+        "startDate": "04/18/2017",
+        "endDate": "04/18/2017",
         "status": projectStatus.done
     };
     data["data"].push(json2);
@@ -102,8 +102,8 @@ function yanshi() {
         },
         "introduce": "支持制定自动快照策略",
         "persons":[{"text":"文峰", "id":"46000619940813231X"}, {"text":"纵柯", "id":"46000119940813231X"}],
-        "startDate": "18/04/2017",
-        "endDate": "18/04/2017",
+        "startDate": "04/18/2017",
+        "endDate": "04/18/2017",
         "status": projectStatus.delay
     };
     data["data"].push(json3);
