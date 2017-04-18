@@ -4,6 +4,14 @@
 var projects = getLocalJson(projectsInfo);
 var userInfo = getLocalJson("userInfo");
 $(document).ready(function() {
+    $('#persons').multiSelect({
+    afterSelect: function(values){
+        alert("Select value: "+values);
+    },
+    afterDeselect: function(values){
+        alert("Deselect value: "+values);
+    }
+    });
     $("#startDate").datepicker({
         inline: true
     });
@@ -36,19 +44,24 @@ $(document).ready(function() {
 function sureBtn() {
     var data = $.isEmptyObject(projects)? {"data":[]} : projects;
     var name = $("#name").val();
-    var dpmSelect = $("#dpmSelect").val();
-    var ownerSelect = $("#ownerSelect").val();
+    var dpmSelectId = $("#dpmSelect").val();
+    var dpmSelectText = $("#dpmSelect").find("option:selected").text();
+    var ownerSelectId = $("#ownerSelect").val();
+    var ownerSelectText = $("#ownerSelect").find("option:selected").text();
     var introduce = $("#introduce").val();
     var startDate = $("#startDate").val();
     var endDate = $("#endDate").val();
     var json = {
         "name": name,
-        "dpmSelect": dpmSelect,
-        "ownerSelect": ownerSelect,
+        "dpmSelectId": dpmSelectId,
+        "dpmSelectText": dpmSelectText,
+        "ownerSelectId": ownerSelectId,
+        "ownerSelectText": ownerSelectText,
         "introduce": introduce,
         "startDate": startDate,
-        "endDate": endDate
+        "endDate": endDate,
+        "status": projectStatus.run
     };
-    data["data"].append(json);
-    setLocalJson(projects, data);
+    data["data"].push(json);
+    setLocalJson(projectsInfo, data);
 }

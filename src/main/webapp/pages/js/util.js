@@ -53,5 +53,19 @@ function string2ChangeLine(s) {
     s =s.replace("↵", "/n");
     return s;
 }
-
+var projectStatus = {
+    run: "执行中",
+    delay: "延期",
+    done: "已完成"
+};
+function projectStatusClass(state) {
+    switch (state) {
+        case projectStatus.run:
+            return "in-progress";
+        case projectStatus.delay:
+            return "pending";
+        case projectStatus.done:
+            return "done";
+    }
+}
 var projectsInfo = "projects";
