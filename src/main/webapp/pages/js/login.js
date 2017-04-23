@@ -3,6 +3,11 @@
  * Diablo9983 -> diablo9983@gmail.com
 **/
 $(document).ready(function(){
+    $("body").keyup(function () {
+        if (event.which == 13){
+            $("#loginBtn").trigger("click");
+        }
+    });
     $.ajaxSetup({
         async : false
     });

@@ -17,4 +17,6 @@ function setParentName(data) {
 }
 function setOwnerName(data) {
     $("#ownerId").text($.isEmptyObject(data["displayName"])?"--":data["displayName"]);
+    var jump_str = "user-detail.html?" + "companyId=" + initArgs["companyId"] +"&id=" + data["name"];
+    document.getElementById("ownerId").setAttribute("href", jump_str);
 }

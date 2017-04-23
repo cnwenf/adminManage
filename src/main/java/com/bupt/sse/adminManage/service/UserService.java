@@ -49,7 +49,7 @@ public class UserService {
     public List<UserEntity> list(String companyId) {
         List<UserEntity> userEntities = userDao.list();
         for (UserEntity userEntity : userEntities) {
-            if (userEntity.getCompanyId().equals(companyId)) {
+            if (null != userEntity.getCompanyId() && userEntity.getCompanyId().equals(companyId)) {
                 continue;
             } else {
                 userEntities.remove(userEntity);

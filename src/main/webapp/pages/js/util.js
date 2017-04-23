@@ -71,9 +71,9 @@ function projectStatusClass(state) {
 function projectStatusColor(state) {
     switch (state) {
         case projectStatus.run:
-            return "in-progress";
+            return "#64909E";
         case projectStatus.delay:
-            return "pending";
+            return "#AC6363";
         case projectStatus.done:
             return "#75B468";
     }
