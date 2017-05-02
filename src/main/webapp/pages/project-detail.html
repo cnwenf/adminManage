@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="css/fullcalendar.css" />
     <link rel="stylesheet" href="css/unicorn.main.css" />
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+    <link rel="stylesheet" href="css/remodal.css">
+    <link rel="stylesheet" href="css/remodal-default-theme.css">
 
+    <script src="js/lib/zepto.js"></script>
+    <script src="js/lib/remodal.min.js"></script>
     <script src="js/lib/angular.min.js"></script>
     <script src="js/lib/excanvas.min.js"></script>
     <script src="js/lib/jquery-3.1.1.min.js"></script>
@@ -28,22 +32,25 @@
 <div id="header" ng-include="'head.html'"></div>
 <div id="sidebar" ng-include="'sidebar.html'"></div>
 
-<div id="content">
+<div id="content" class="remodal-bg">
     <div id="content-header">
         <h1>项目信息</h1>
+        <div class="btn-group">
+            <a href="#modal">编辑部门</a>
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title">
-								<span class="icon">
-									<i class="icon-align-justify"></i>
-								</span>
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
                         <h5>项目信息</h5>
                     </div>
                     <div class="widget-content">
-                        <form action="#" method="get" class="form-horizontal">
+                        <form action="#" method="get" class="form-horizontal" style="z-index: 200">
                             <p class="amount-word">
                                 项目名称:
                                 <span id="name">项目名称</span>
@@ -59,7 +66,7 @@
                             <p class="amount-word">
                                 项目组员：
                                 <span id="persons">
-                                </span>
+                            </span>
                             </p>
                             <p class="amount-word">
                                 起始日期:
@@ -68,30 +75,30 @@
                             <p class="amount-word">
                                 计划终止日期：
                                 <!--<span id="endDate">终止时间</span>-->
-                                <input readonly="true" style="border:0;" id="endDate">
+                                <input readonly="readonly" style="border:0;" id="endDate">
                                 </input>
                             </p>
                             <p class="amount-word">
                                 项目状态：
-                                <input readonly="true" style="border:0;" id="status">
+                                <input readonly="readonly" style="border:0;" id="status">
                                 </input>
                             </p>
                             <p class="amount-word">
                                 会议记录：
                                 <span id="meeting">
-                                    <a href="">项目启动</a>
-                                    <a href="">项目方案评审</a>
-                                    <a href="">项目进展报告</a>
-                                    <a href="">项目总结</a>
-                                </span>
+                                <a href="">项目启动</a>
+                                <a href="">项目方案评审</a>
+                                <a href="">项目进展报告</a>
+                                <a href="">项目总结</a>
+                            </span>
                             </p>
                             <p class="amount-word">
                                 物资使用记录：
                                 <span id="wuzi">
-                                    <a href="">服务器3台</a>
-                                    <a href="">2T硬盘</a>
-                                    <a href="">NVIDIA-M60显卡租用</a>
-                                </span>
+                                <a href="">服务器3台</a>
+                                <a href="">2T硬盘</a>
+                                <a href="">NVIDIA-M60显卡租用</a>
+                            </span>
                             </p>
                         </form>
                     </div>
@@ -99,6 +106,30 @@
             </div>
         </div>
     </div>
+</div>
+<div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+    <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+    <div>
+        <h2 id="modal1Title">Remodal</h2>
+        <p id="modal1Desc">
+            Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin
+            with declarative state notation and hash tracking.
+        </p>
+    </div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+    <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+</div>
+
+<div data-remodal-id="modal2" role="dialog" aria-labelledby="modal2Title" aria-describedby="modal2Desc">
+    <div>
+        <h2 id="modal2Title">Another one window</h2>
+        <p id="modal2Desc">
+            Hello!
+        </p>
+    </div>
+    <br>
+    <button data-remodal-action="confirm" class="remodal-confirm">Hello!</button>
 </div>
 <script src="js/util.js"></script>
 <script src="js/project-detail.js"></script>
