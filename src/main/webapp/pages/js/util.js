@@ -79,4 +79,20 @@ function projectStatusColor(state) {
     }
 
 }
+
+function setSideActive(id1, id2) {
+    document.getElementById(id1).setAttribute("class", "submenu active open");
+    document.getElementById(id2).setAttribute("class", "active");
+}
+
+function setInputReadOnly(id) {
+    $("#" + id).focus(function () {
+        $("#" + id).attr("style", "border:1;");
+        $("#" + id).removeAttr("readonly");
+    });
+    $("#" + id).blur(function () {
+        $("#" + id).attr("style", "border:0;");
+        $("#" + id).attr("readonly", "true");
+    });
+}
 var projectsInfo = "projects";

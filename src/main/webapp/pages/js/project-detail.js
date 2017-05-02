@@ -5,6 +5,11 @@ var projects = getLocalJson(projectsInfo);
 var initArgs = getRequest();
 var userInfo = getLocalJson("userInfo");
 $(document).ready(function() {
+    setSideActive("department_li", "department_detail_li");
+    setInputReadOnly("endDate");
+    $("#endDate").datepicker({
+        inline: true
+    });
     init();
 });
 function init() {
@@ -27,8 +32,8 @@ function init() {
         jump_str = "user-detail.html?" + "companyId=" + project["companyId"] + "&id=" + project["owner"]["id"];
         document.getElementById("owner").setAttribute("href", jump_str);
         $("#startDate").text(project["startDate"]);
-        $("#endDate").text(project["endDate"]);
-        $("#status").text(project["status"]);
+        $("#endDate").val(project["endDate"]);
+        $("#status").val(project["status"]);
         $("#status").css("color", projectStatusColor(project["status"]));
         var projectsPersons = project["persons"];
         var span = document.getElementById("persons");

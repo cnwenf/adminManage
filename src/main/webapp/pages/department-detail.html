@@ -9,64 +9,26 @@
     <link rel="stylesheet" href="css/fullcalendar.css" />
     <link rel="stylesheet" href="css/unicorn.main.css" />
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/excanvas.min.js"></script>
+    <script src="js/lib/jquery-3.1.1.min.js"></script>
+    <script src="js/lib/bootstrap-3.3.7.min.js"></script>
+    <script src="js/lib/jquery.flot.min.js"></script>
+    <script src="js/lib/jquery.flot.resize.min.js"></script>
+    <script src="js/lib/jquery.peity.min.js"></script>
+    <script src="js/lib/fullcalendar.min.js"></script>
+    <script src="js/lib/unicorn.js"></script>
+    <script src="js/lib/unicorn.dashboard.js"></script>
+    <script src="js/lib/bootstrap-treeview.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/department-detail.js"></script>
 </head>
-<body>
+<body ng-app="">
 
 
-<div id="header">
-    <h1><a href="./dashboard.html">行政管理系统</a></h1>
-</div>
-
-<div id="sidebar">
-    <ul>
-        <li class="submenu active open">
-            <a href="#"><i class="icon icon-th-list"></i> <span>部门管理</span></a>
-            <ul>
-                <li><a href="department-overview.html">部门概览</a></li>
-                <li class="active"><a>部门明细</a></li>
-                <li><a href="department-create.html">创建部门</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>项目管理</span></a>
-            <ul>
-                <li><a href="project-overview.html">项目概览</a></li>
-                <li><a href="project-create.html">创建项目</a></li>
-                <li><a href="project-detail.html">项目明细</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>人员管理</span></a>
-            <ul>
-                <li><a href="user-detail.html">人员查询</a></li>
-                <li><a href="user-create.html">添加员工</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>考勤管理</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="">请假申请</a></li>
-                <li><a href="">请假审批</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>会议管理</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="">我的会议</a></li>
-                <li><a href="">发起会议</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>物资管理</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="">物资申请</a></li>
-                <li><a href="">物资审批</a></li>
-            </ul>
-        </li>
-    </ul>
-
-</div>
-
+<div id="header" ng-include="'head.html'"></div>
+<div id="sidebar" ng-include="'sidebar.html'"></div>
 <div id="content">
     <div id="content-header">
         <h1>部门明细</h1>
@@ -106,19 +68,5 @@
         </div>
     </div>
 </div>
-
-
-<script src="js/lib/excanvas.min.js"></script>
-<script src="js/lib/jquery-3.1.1.min.js"></script>
-<script src="js/lib/bootstrap-3.3.7.min.js"></script>
-<script src="js/lib/jquery.flot.min.js"></script>
-<script src="js/lib/jquery.flot.resize.min.js"></script>
-<script src="js/lib/jquery.peity.min.js"></script>
-<script src="js/lib/fullcalendar.min.js"></script>
-<script src="js/lib/unicorn.js"></script>
-<script src="js/lib/unicorn.dashboard.js"></script>
-<script src="js/lib/bootstrap-treeview.min.js"></script>
-<script src="js/util.js"></script>
-<script src="js/department-detail.js"></script>
 </body>
 </html>
