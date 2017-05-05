@@ -4,39 +4,33 @@
     <title>行政管理系统</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap-3.3.7.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/jquery-ui.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/fullcalendar.css" />
+    <link rel="stylesheet" href="css/multi-select.css" />
     <link rel="stylesheet" href="css/unicorn.main.css" />
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
-    <link rel="stylesheet" href="css/remodal.css">
-    <link rel="stylesheet" href="css/remodal-default-theme.css">
 
-    <script src="js/lib/zepto.js"></script>
-    <script src="js/lib/remodal.min.js"></script>
     <script src="js/lib/angular.min.js"></script>
     <script src="js/lib/excanvas.min.js"></script>
     <script src="js/lib/jquery-3.1.1.min.js"></script>
     <script src="js/lib/jquery-ui.custom.min.js"></script>
+    <script src="js/lib/jquery.multi-select.js"></script>
     <script src="js/lib/bootstrap-3.3.7.min.js"></script>
     <script src="js/lib/jquery.flot.min.js"></script>
     <script src="js/lib/jquery.flot.resize.min.js"></script>
-    <script src="js/lib/jquery.peity.min.js"></script>
-    <script src="js/lib/fullcalendar.min.js"></script>
     <script src="js/lib/unicorn.js"></script>
     <script src="js/lib/unicorn.dashboard.js"></script>
     <script src="js/lib/bootstrap-treeview.min.js"></script>
 </head>
-<body ng-app="">
+<body ng-app="projectDetailApp" ng-controller="projectDetailCtrl">
 <div id="header" ng-include="'head.html'"></div>
 <div id="sidebar" ng-include="'sidebar.html'"></div>
 
-<div id="content" class="remodal-bg">
+<div id="content">
     <div id="content-header">
         <h1>项目信息</h1>
         <div class="btn-group">
-            <a href="#modal">编辑部门</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">编辑项目</a>
         </div>
     </div>
     <div class="container-fluid">
@@ -53,35 +47,31 @@
                         <form action="#" method="get" class="form-horizontal" style="z-index: 200">
                             <p class="amount-word">
                                 项目名称:
-                                <span id="name">项目名称</span>
+                                <span id="name">{{project.project.text}}</span>
                             </p>
                             <p class="amount-word">
                                 所属部门:
-                                <span><a href="" id="dpm">所属部门</a></span>
+                                <span><a ng-href="department-detail.html?companyId={{project.companyId}}&id={{project.dpm.id}}" id="dpm">{{project.dpm.text}}</a></span>
                             </p>
                             <p class="amount-word">
                                 项目主管:
-                                <span><a href="" id="owner">项目主管</a></span>
+                                <span><a ng-href="user-detail.html?companyId={{project.companyId}}&id={{project.owner.id}}" id="owner">{{project.owner.text}}</a></span>
                             </p>
                             <p class="amount-word">
                                 项目组员：
-                                <span id="persons">
-                            </span>
+                                <a style="margin-left: 5px" ng-repeat="p in project.persons" ng-href="user-detail.html?companyId={{project.companyId}}&id={{p.id}}">{{p.text}}</a>
                             </p>
                             <p class="amount-word">
                                 起始日期:
-                                <span id="startDate">起始时间</span>
+                                <span id="startDate">{{project.startDate}}</span>
                             </p>
                             <p class="amount-word">
                                 计划终止日期：
-                                <!--<span id="endDate">终止时间</span>-->
-                                <input readonly="readonly" style="border:0;" id="endDate">
-                                </input>
+                                <span id="endDate">{{project.endDate}}</span>
                             </p>
                             <p class="amount-word">
                                 项目状态：
-                                <input readonly="readonly" style="border:0;" id="status">
-                                </input>
+                                <span id="status">{{project.status}}</span>
                             </p>
                             <p class="amount-word">
                                 会议记录：
@@ -107,31 +97,83 @@
         </div>
     </div>
 </div>
-<div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-    <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-    <div>
-        <h2 id="modal1Title">Remodal</h2>
-        <p id="modal1Desc">
-            Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin
-            with declarative state notation and hash tracking.
-        </p>
-    </div>
-    <br>
-    <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-    <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
-</div>
 
-<div data-remodal-id="modal2" role="dialog" aria-labelledby="modal2Title" aria-describedby="modal2Desc">
-    <div>
-        <h2 id="modal2Title">Another one window</h2>
-        <p id="modal2Desc">
-            Hello!
-        </p>
-    </div>
-    <br>
-    <button data-remodal-action="confirm" class="remodal-confirm">Hello!</button>
-</div>
 <script src="js/util.js"></script>
 <script src="js/project-detail.js"></script>
+<div class="modal fade" style="width: 600px" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改项目信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="get" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">项目ID</label>
+                    <div class="controls">
+                        <input ng-disabled="true" ng-model="editInfo.project.id" type="text" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">项目名称</label>
+                    <div class="controls">
+                        <input ng-model="editInfo.project.text" type="text" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">所属部门</label>
+                    <div class="controls">
+                        <input ng-disabled="true" ng-model="editInfo.dpm.text" type="text" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">项目主管</label>
+                    <div class="controls">
+                        <select ng-model="editInfo.owner" ng-options="p.text for p in users"></select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">项目人员</label>
+                    <div class="controls">
+                        <select multiple="multiple" id="editPersons">
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">起始日期</label>
+                    <div class="controls">
+                        <input type="text" ng-model="editInfo.startDate" ng-disabled="true"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">预期完成日期</label>
+                    <div class="controls">
+                        <input id="editEndDate" type="text"  ng-model="editInfo.endDate" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">项目简介</label>
+                    <div class="controls">
+                        <textarea id="introduce" ng-modal="editInfo.introduce"></textarea>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </body>
 </html>

@@ -41,6 +41,8 @@ $(document).ready(function() {
                 var ownerSelect = $("#ownerSelect");
                 var personsSelect = $("#persons");
                 for (var index in data) {
+
+
                     var varItem = new Option(data[index]["displayName"], data[index]["name"]);
                     ownerSelect.append(varItem);
                     $("#persons").multiSelect('addOption', { value: data[index]["name"], text: data[index]["displayName"]});
