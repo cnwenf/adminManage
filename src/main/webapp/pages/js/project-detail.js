@@ -31,6 +31,7 @@ app.controller('projectDetailCtrl', function($scope) {
     }
 
     function initUsers() {
+        //初始化部门主管下拉框
         httpSyncPost(api.user.list, {"companyId":userInfo["companyId"]},function (data) {
             if(data) {
                 for (var index in data) {

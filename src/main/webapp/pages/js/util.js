@@ -39,6 +39,10 @@ var api = {
         list: "/adminManage/user/list",
         detail:"/adminManage/user/detail",
         create:"/adminManage/user/create"
+    },
+    project: {
+        create: "/adminManage/project/create",
+        get: "/adminManage/project/get"
     }
 }
 
@@ -46,6 +50,10 @@ function httpSyncPost(url, args, callback) {
     $.ajaxSetup({
         async : false
     });
+    $.post(url, args, callback);
+}
+
+function httpAsyncPost(url, args, callback) {
     $.post(url, args, callback);
 }
 function string2ChangeLine(s) {

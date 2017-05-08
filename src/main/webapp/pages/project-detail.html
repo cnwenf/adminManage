@@ -30,7 +30,8 @@
     <div id="content-header">
         <h1>项目信息</h1>
         <div class="btn-group">
-            <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">编辑项目</a>
+            <!--data-toggle="modal" data-target="#myModal"-->
+            <a class="btn btn-primary" ng-href="project-create.html?companyId={{project.companyId}}&id={{project.project.id}}">编辑项目</a>
         </div>
     </div>
     <div class="container-fluid">
