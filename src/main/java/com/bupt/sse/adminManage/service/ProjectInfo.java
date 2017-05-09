@@ -1,12 +1,19 @@
 package com.bupt.sse.adminManage.service;
 
+import com.bupt.sse.adminManage.dao.iface.DepartmentDao;
+import com.bupt.sse.adminManage.dao.iface.UserDao;
 import com.bupt.sse.adminManage.entity.DepartmentEntity;
 import com.bupt.sse.adminManage.entity.ProjectEntity;
 import com.bupt.sse.adminManage.entity.UserEntity;
 import com.bupt.sse.adminManage.entity.common.ProjectStatus;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by WenFe on 2017/5/8.
@@ -15,14 +22,57 @@ public class ProjectInfo {
     private String id;
     private String companyId;
     private String name;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private ProjectStatus status;
     private String introduce;
     private String budget;
     private UserEntity owner;
     private List<UserEntity> persons;
     private DepartmentEntity department;
+
+    public ProjectInfo() {}
+
+    public ProjectInfo(String projectInfo, UserService userService, DepartmentService departmentService) {
+        JSONObject jsonObject = new JSONObject(projectInfo);
+        if (null != jsonObject.getString("id") && !jsonObject.getString("id").equals("")) {
+            this.setId(jsonObject.getString("id"));
+        } else {
+            this.setId(UUID.randomUUID().toString());
+        }
+        this.setName(jsonObject.getString("name"));
+        this.setCompanyId(jsonObject.getString("companyId"));
+        this.setStartDate(jsonObject.getString("startDate"));
+        this.setEndDate(jsonObject.getString("endDate"));
+        if (jsonObject.getString("status").equals("run")) {
+            this.setStatus(ProjectStatus.RUN);
+        } else if (jsonObject.getString("status").equals("end")) {
+            this.setStatus(ProjectStatus.END);
+        } else if (jsonObject.getString("status").equals("delay")) {
+            this.setStatus(ProjectStatus.DELAY);
+        } else if (jsonObject.getString("status").equals("forcestop")) {
+            this.setStatus(ProjectStatus.FORCESTOP);
+        }
+
+        this.setIntroduce(jsonObject.getString("introduce"));
+        this.setBudget(jsonObject.getString("budget"));
+        JSONObject jsonOwner = jsonObject.getJSONObject("owner");
+        UserEntity owner = userService.get(jsonOwner.getString("name"));
+        this.setOwner(owner);
+
+        DepartmentEntity departmentEntity = departmentService.getById(jsonObject.getString("companyId")
+                , jsonObject.getJSONObject("department").getString("id"));
+        this.setDepartment(departmentEntity);
+
+        JSONArray personsArray = jsonObject.getJSONArray("persons");
+        List<UserEntity> persons = new ArrayList<UserEntity>();
+        for (int i = 0; i < personsArray.length(); i++) {
+            JSONObject p  = personsArray.getJSONObject(i);
+            UserEntity u = userService.get(p.getString("name"));
+            persons.add(u);
+        }
+        this.setPersons(persons);
+    }
 
     public String getId() {
         return id;
@@ -48,19 +98,19 @@ public class ProjectInfo {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

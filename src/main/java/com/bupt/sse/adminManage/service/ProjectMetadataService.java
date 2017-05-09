@@ -39,4 +39,8 @@ public class ProjectMetadataService {
         }
         return result;
     }
+
+    public void delete(String id) {
+        projectMetadataDao.deleteById(id);
+    }
 }

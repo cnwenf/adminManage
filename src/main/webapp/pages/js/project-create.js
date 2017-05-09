@@ -3,23 +3,28 @@
  */
 var app = angular.module('projectCEApp', []);
 app.controller('projectCECtrl', function($scope) {
-    var projects = getLocalJson(projectsInfo);
-    var userInfo = getLocalJson("userInfo");
-    var initArgs = getRequest();
-    $scope.project = {
-        id: "",
-        budget:"",
-        companyId: userInfo.companyId,
-        persons: []
-    };
-    if ($.isEmptyObject(initArgs)) {
-        $scope.isCreate = true;
-    } else {
-        $scope.isEdit = true;
-        $scope.project = getProjectInfo(initArgs.companyId, initArgs.id);
-    }
-    var personsSelect = [];
     $(document).ready(function () {
+        init();
+    });
+
+    function init() {
+        $scope.userInfo = getLocalJson("userInfo");
+        $scope.initArgs = getRequest();
+        $scope.project = {
+            id: "",
+            budget:"",
+            companyId: $scope.userInfo.companyId,
+            persons: []
+        };
+        initPersons();
+        initOwner();
+        initDepartment();
+        if ($.isEmptyObject($scope.initArgs)) {
+            $scope.isCreate = true;
+        } else {
+            $scope.isEdit = true;
+            getProjectInfo($scope.initArgs.companyId, $scope.initArgs.id);
+        }
         $("#startDate").datepicker({
             inline: true
         });
@@ -27,10 +32,9 @@ app.controller('projectCECtrl', function($scope) {
             inline: true
         });
 
-        initPersons();
-        initOwner();
-        initDepartment();
-    });
+
+    }
+
     function initDepartment() {
         var callBackFuc = function(data) {
             if (data) {
@@ -38,11 +42,11 @@ app.controller('projectCECtrl', function($scope) {
             } else {
             }
         }
-        httpSyncPost(api.department.list, {"companyId": userInfo["companyId"]}, callBackFuc);
+        httpSyncPost(api.department.list, {"companyId": $scope.userInfo["companyId"]}, callBackFuc);
     }
     function initPersons() {
         var personsSelect = $("#persons");
-        $.post(api.user.list,{"companyId":userInfo["companyId"]},
+        $.post(api.user.list,{"companyId":$scope.userInfo["companyId"]},
             function(data) {
                 if (data) {
                     for (var index in data) {
@@ -51,17 +55,6 @@ app.controller('projectCECtrl', function($scope) {
                             text: data[index]["displayName"]
                         });
                     }
-                    //初始化已选择人员
-                    if ($scope.isEdit) {
-                        if (!$.isEmptyObject($scope.project)) {
-                            var personsId = [];
-                            for (var index in $scope.project.persons) {
-                                personsId.push($scope.project.persons[index].id);
-                            }
-                            personsSelect.multiSelect('select', personsId);
-                        }
-                    }
-
                 } else {
                 }
             });
@@ -91,61 +84,49 @@ app.controller('projectCECtrl', function($scope) {
                 $scope.users = data;
             }
         };
-        httpSyncPost(api.user.list, {"companyId": userInfo["companyId"]}, callBackFuc);
+        httpSyncPost(api.user.list, {"companyId": $scope.userInfo["companyId"]}, callBackFuc);
 
     }
 
     function getProjectInfo(companyId, id) {
-        var projects = getLocalJson(projectsInfo);
-        var data = projects["data"];
-        for (var i in data){
-            var e = data[i];
-            if (id == e["project"]["id"]) {
-                return data[i];
+        var callBackFun = function (data) {
+            if (data) {
+                $scope.project = data;
+                //初始化已选择人员
+                var personsSelect = $("#persons");
+                if (!$.isEmptyObject($scope.project)) {
+                    var personsId = [];
+                    for (var index in $scope.project.persons) {
+                        personsId.push($scope.project.persons[index].name);
+                    }
+                    personsSelect.multiSelect('select', personsId);
+                }
             }
-        }
-        return null;
+        };
+        httpSyncPost(api.project.get, {companyId: companyId, id: id}, callBackFun);
     }
     $scope.projectCreate = function() {
+        //ng-model无法取到该值
         $scope.project.startDate = $("#startDate").val();
         $scope.project.endDate = $("#endDate").val();
-        httpSyncPost(api.project.create, {"projectInfo": JSON.stringify($scope.project)}, function(data){
+        $scope.project.status = "run";
+        var projectInfo  = JSON.stringify($scope.project);
+        httpSyncPost(api.project.create, {"projectInfo": projectInfo}, function(data){
             if (data) {
                 alert("suc");
             }
         });
     };
-    function sureBtn() {
-        var data = $.isEmptyObject(projects) ? {"data": []} : projects;
-        var name = $("#name").val();
-        var dpmSelectId = $("#dpmSelect").val();
-        var dpmSelectText = $("#dpmSelect").find("option:selected").text();
-        var ownerSelectId = $("#ownerSelect").val();
-        var ownerSelectText = $("#ownerSelect").find("option:selected").text();
-        var introduce = $("#introduce").val();
-        var startDate = $("#startDate").val();
-        var endDate = $("#endDate").val();
-        var json = {
-            "companyId": userInfo["companyId"],
-            "project": {
-                "text": name,
-                "id": data["data"].length
-            },
-            "dpm": {
-                "text": dpmSelectText,
-                "id": dpmSelectId
-            },
-            "owner": {
-                "text": ownerSelectText,
-                "id": ownerSelectId
-            },
-            "introduce": introduce,
-            "startDate": startDate,
-            "endDate": endDate,
-            "persons": personsSelect,
-            "status": projectStatus.run
-        };
-        data["data"].push(json);
-        setLocalJson(projectsInfo, data);
-    }
+
+    $scope.projectUpdate = function() {
+        //ng-model无法取到该值
+        $scope.project.startDate = $("#startDate").val();
+        $scope.project.endDate = $("#endDate").val();
+        var projectInfo  = JSON.stringify($scope.project);
+        httpSyncPost(api.project.update, {"projectInfo": projectInfo}, function(data){
+            if (data) {
+                alert("suc");
+            }
+        });
+    };
 });

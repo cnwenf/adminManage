@@ -85,13 +85,20 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label">经费预算(元)</label>
+                                <div class="controls">
+                                    <input id="budget" type="text" ng-model="project.budget"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label">项目简介</label>
                                 <div class="controls">
                                     <textarea id="introduce" ng-model="project.introduce"></textarea>
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" ng-click="projectCreate()">确定</button>
+                                <button ng-if="isCreate" type="submit" class="btn btn-primary" ng-click="projectCreate()">确定</button>
+                                <button ng-if="isEdit" type="submit" class="btn btn-primary" ng-click="projectUpdate()">确定</button>
                             </div>
                         </form>
                     </div>

@@ -42,7 +42,9 @@ var api = {
     },
     project: {
         create: "/adminManage/project/create",
-        get: "/adminManage/project/get"
+        get: "/adminManage/project/get",
+        list:"/adminManage/project/list",
+        update:"/adminManage/project/update"
     }
 }
 
