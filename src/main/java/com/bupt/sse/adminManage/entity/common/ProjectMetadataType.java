@@ -6,5 +6,7 @@ package com.bupt.sse.adminManage.entity.common;
 public enum ProjectMetadataType {
     owner,
     persons,
-    department
+    department,
+    meeting,
+    matter
 }

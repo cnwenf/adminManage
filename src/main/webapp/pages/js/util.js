@@ -45,14 +45,47 @@ var api = {
         get: "/adminManage/project/get",
         list:"/adminManage/project/list",
         update:"/adminManage/project/update"
+    },
+    meeting: {
+        list: "/adminManage/meeting/list",
+        get: "/adminManage/meeting/get",
+        create: "/adminManage/meeting/create",
+        listByProject: "/adminManage/meeting/listByProject",
+        listByUser: "/adminManage/meeting/listByUser",
+        update: "/adminManage/meeting/update"
+    },
+    material: {
+        create: "/adminManage/material/create",
+        get: "/adminManage/material/get",
+        update: "/adminManage/material/update",
+        listByProject: "/adminManage/material/listByProject",
+        listBySpUser: "/adminManage/material/listBySpUser",
+        listByExUser: "/adminManage/material/listByExUser",
+        delete: "/adminManage/material/delete"
     }
+
+
 }
 
 function httpSyncPost(url, args, callback) {
+    //$.blockUI({ css: {
+    //    border: 'none',
+    //    padding: '15px',
+    //    backgroundColor: '#000',
+    //    '-webkit-border-radius': '10px',
+    //    '-moz-border-radius': '10px',
+    //    opacity: .5,
+    //    color: '#fff'
+    //} });
     $.ajaxSetup({
         async : false
     });
     $.post(url, args, callback);
+    $.ajaxSetup({
+        async : true
+    });
+    //$.unblockUI();
+
 }
 
 function httpAsyncPost(url, args, callback) {

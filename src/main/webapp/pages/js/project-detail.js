@@ -15,12 +15,34 @@ app.controller('projectDetailCtrl', function($scope) {
             if (data) {
                 $scope.project = data;
             }
-        }
+        };
         httpSyncPost(api.project.get, {"companyId": $scope.initArgs.companyId, "id": $scope.initArgs.id}, callBackFuc);
+    }
+
+    function getMeetingInfo() {
+        var callBackFun = function(data) {
+            if (data) {
+                $scope.meetings = data;
+            }
+            $scope.$apply();
+        };
+        httpSyncPost(api.meeting.listByProject, {projectId: $scope.project.id}, callBackFun);
+    }
+
+    function getMaterialInfo() {
+        var callBackFun = function(data) {
+            if (data) {
+                $scope.materials = data;
+            }
+            $scope.$apply();
+        };
+        httpSyncPost(api.material.listByProject, {projectId: $scope.project.id}, callBackFun);
     }
 
     function init() {
         getProjectInfo();
+        getMeetingInfo();
+        getMaterialInfo();
     }
 
     $scope.selectStatusColor = function (status) {
@@ -36,6 +58,16 @@ app.controller('projectDetailCtrl', function($scope) {
                 return "完结";
             case "FORCESTOP":
                 return "异常终止";
+        }
+    };
+
+    $scope.transMaterialStatus = function(status) {
+        if (status == "run") {
+            return "待审批";
+        } else if (status == "pass") {
+            return "审批通过";
+        } else if (status == "end") {
+            return "审批拒绝";
         }
     };
 });

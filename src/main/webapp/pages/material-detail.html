@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>行政管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/multi-select.css" />
+    <link rel="stylesheet" href="css/unicorn.main.css" />
+    <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/excanvas.min.js"></script>
+    <script src="js/lib/jquery-3.1.1.min.js"></script>
+    <script src="js/lib/jquery-ui.custom.min.js"></script>
+    <script src="js/lib/jquery.multi-select.js"></script>
+    <script src="js/lib/bootstrap-3.3.7.min.js"></script>
+    <script src="js/lib/jquery.flot.min.js"></script>
+    <script src="js/lib/jquery.flot.resize.min.js"></script>
+    <script src="js/lib/unicorn.js"></script>
+    <script src="js/lib/unicorn.dashboard.js"></script>
+    <script src="js/lib/bootstrap-treeview.min.js"></script>
+</head>
+<body ng-app="MaterialDApp" ng-controller="MaterialDCtrl">
+<div id="header" ng-include="'head.html'"></div>
+<div id="sidebar" ng-include="'sidebar.html'"></div>
+
+<div id="content">
+    <div id="content-header">
+        <h1>审批信息</h1>
+        <div class="btn-group">
+            <a class="btn btn-navbar" onclick="javascript:history.back(-1);" style="margin-right: 5px">返回</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
+                        <h5>审批信息</h5>
+                    </div>
+                    <div class="widget-content">
+                        <form action="#" method="get" class="form-horizontal" style="z-index: 200">
+                            <p class="amount-word">
+                                物资名称:
+                                <span id="name">{{material.name}}</span>
+                            </p>
+                            <p class="amount-word">
+                                物资数量:
+                                <span id="num">{{material.num}}</span>
+                            </p>
+                            <p class="amount-word">
+                                申请人:
+                                <span id="spUserName">{{material.spUserName}}</span>
+                            </p>
+                            <p class="amount-word">
+                                审批人:
+                                <span id="exUserName">{{material.exUserName}}</span>
+                            </p>
+                            <p class="amount-word">
+                                所属项目:
+                                <span><a ng-href="project-detail.html?companyId={{material.companyId}}&id={{material.projectId}}" id="dpm">{{material.projectName}}</a></span>
+                            </p>
+                            <p class="amount-word">
+                                物资使用时间:
+                                <span id="startDate">{{material.time}}</span>
+                            </p>
+                            <p class="amount-word">
+                                附加说明：
+                            </p>
+                            <textarea ng-model="material.spInfo" ng-disabled="true"></textarea>
+                            <p class="amount-word">
+                                审批状态:
+                                <select ng-disabled="userInfo.name != material.exUserId" id="status">
+                                    <option ng-selected='"run" == material.status' value="run" ng-model="material.status">审批中</option>
+                                    <option ng-selected='"pass" == material.status' value="pass" ng-model="material.status">通过</option>
+                                    <option ng-selected='"end" == material.status' value="end" ng-model="material.status">拒绝</option>
+                                </select>
+                            </p>
+                            <p class="amount-word">
+                                审批意见：
+                            </p>
+                            <textarea ng-model="material.exInfo" ng-disabled="userInfo.name != material.exUserId"></textarea>
+                        </form>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" ng-click="update()" ng-if="userInfo.name == material.exUserId">更新</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/util.js"></script>
+<script src="js/material-detail.js"></script>
+</body>
+</html>

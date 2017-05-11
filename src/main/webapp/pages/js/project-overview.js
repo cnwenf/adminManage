@@ -5,8 +5,11 @@ var app = angular.module('projectOverviewApp', []);
 app.controller('projectOverviewCtrl', function($scope) {
     $scope.userInfo = getLocalJson("userInfo");
     $(document).ready(function () {
+
         setSideActive("project_li", "project_overview_li");
         init();
+        $scope.$apply();
+
     });
     $scope.selectStatusColor = function (status) {
         return projectStatusColor($scope.transStatus(status));

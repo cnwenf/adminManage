@@ -54,15 +54,13 @@
                             <div class="control-group">
                                 <label class="control-label" >所属部门</label>
                                 <div class="controls">
-                                    <select id="dpmSelect" ng-change="initPersons()" ng-model="project.department" ng-options="d.name for d in departments">
-                                    </select>
+                                    <input id="department" type="text" ng-disabled="isEdit" ng-model="project.department.name"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">项目主管</label>
                                 <div class="controls">
-                                    <select id="ownerSelect" ng-model="project.owner" ng-options="u.displayName for u in users">
-                                    </select>
+                                    <input id="owner" type="text" ng-disabled="isEdit" ng-model="project.owner.displayName"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -84,6 +82,17 @@
                                     <input id="endDate" type="text" ng-model="project.endDate"/>
                                 </div>
                             </div>
+                            <div class="control-group" ng-if="isEdit">
+                                <label class="control-label">项目状态</label>
+                                <div class="controls">
+                                    <select id="status" ng-model="project.status">
+                                        <option value="run">执行中</option>
+                                        <option value="deplay">延期</option>
+                                        <option value="end">完结</option>
+                                        <option value="forcestop">异常终止</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="control-group">
                                 <label class="control-label">经费预算(元)</label>
                                 <div class="controls">
@@ -96,11 +105,11 @@
                                     <textarea id="introduce" ng-model="project.introduce"></textarea>
                                 </div>
                             </div>
-                            <div class="form-actions">
-                                <button ng-if="isCreate" type="submit" class="btn btn-primary" ng-click="projectCreate()">确定</button>
-                                <button ng-if="isEdit" type="submit" class="btn btn-primary" ng-click="projectUpdate()">确定</button>
-                            </div>
                         </form>
+                        <div class="form-actions">
+                            <button ng-if="isCreate" type="submit" class="btn btn-primary" ng-click="projectCreate()">确定</button>
+                            <button ng-if="isEdit" type="submit" class="btn btn-primary" ng-click="projectUpdate()">确定</button>
+                        </div>
                     </div>
                 </div>
             </div>

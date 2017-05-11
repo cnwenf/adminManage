@@ -14,6 +14,7 @@ app.controller('projectCECtrl', function($scope) {
             id: "",
             budget:"",
             companyId: $scope.userInfo.companyId,
+            owner: {},
             persons: []
         };
         initPersons();
@@ -32,7 +33,7 @@ app.controller('projectCECtrl', function($scope) {
             inline: true
         });
 
-
+        $scope.$apply();
     }
 
     function initDepartment() {
@@ -101,7 +102,14 @@ app.controller('projectCECtrl', function($scope) {
                     }
                     personsSelect.multiSelect('select', personsId);
                 }
+                //for (var index in $scope.users) {
+                //    if ($scope.project.owner.name == $scope.users[index].name) {
+                //        $scope.project.owner = $scope.users[index];
+                //        $scope.ownerIndex = index;
+                //    }
+                //}
             }
+            $scope.$apply();
         };
         httpSyncPost(api.project.get, {companyId: companyId, id: id}, callBackFun);
     }
@@ -128,5 +136,6 @@ app.controller('projectCECtrl', function($scope) {
                 alert("suc");
             }
         });
+        return false;
     };
 });
