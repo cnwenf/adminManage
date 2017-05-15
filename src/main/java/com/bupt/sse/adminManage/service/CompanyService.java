@@ -33,7 +33,7 @@ public class CompanyService {
         if(companyDao.create(companyEntity)){
             UserEntity userEntity = userDao.getById(ownerId);
             userEntity.setCompanyId(companyEntity.getId());
-            userEntity.setRole(Roles.companyOwner);
+            userEntity.setRole("admin");
             userDao.update(userEntity);
             return companyEntity;
         } else {

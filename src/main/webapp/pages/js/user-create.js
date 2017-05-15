@@ -59,7 +59,7 @@ app.controller('userCCtrl', function($scope) {
                 "companyId": userInfo["companyId"],
                 "phone": phone,
                 "email": email,
-                "history": history
+                "history": history,
             };
             httpSyncPost(api.user.create, args, callBackFun);
         }

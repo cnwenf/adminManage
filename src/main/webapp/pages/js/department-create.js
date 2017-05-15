@@ -25,25 +25,26 @@ app.controller('DepartmentCCtrl', function($scope) {
                 } else {
                 }
             });
-        $.post(api.user.list, {"companyId": userInfo["companyId"]},
-            function (data) {
-                if (data) {
-                    var ownerSelect = $("#ownerSelect");
-                    var varItem = new Option("[空]", "");
-                    ownerSelect.append(varItem);
-                    for (var index in data) {
-                        var varItem = new Option(data[index]["displayName"], data[index]["name"]);
-                        ownerSelect.append(varItem);
-                    }
-                } else {
-                }
-            });
+        // $.post(api.user.list, {"companyId": userInfo["companyId"]},
+        //     function (data) {
+        //         if (data) {
+        //             var ownerSelect = $("#ownerSelect");
+        //             var varItem = new Option("[空]", "");
+        //             ownerSelect.append(varItem);
+        //             for (var index in data) {
+        //                 var varItem = new Option(data[index]["displayName"], data[index]["name"]);
+        //                 ownerSelect.append(varItem);
+        //             }
+        //         } else {
+        //         }
+        //     });
     }
     $scope.sureBtn = function() {
         var userInfo = getLocalJson("userInfo");
         var name = $('#dpmName').val();
         var parentId = $('#dpmSelect').val();
-        var ownerId = $('#ownerSelect').val();
+        //废弃部长选择
+        var ownerId = "0";//$('#ownerSelect').val();
         var introduce = $('#introduce').val();
         if ($.isEmptyObject(name)) {
             alert("部门名称不能为空！");

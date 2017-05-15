@@ -86,10 +86,10 @@
                                 <label class="control-label">项目状态</label>
                                 <div class="controls">
                                     <select id="status" ng-model="project.status">
-                                        <option value="run">执行中</option>
-                                        <option value="deplay">延期</option>
-                                        <option value="end">完结</option>
-                                        <option value="forcestop">异常终止</option>
+                                        <option ng-selected='project.status == "RUN"' value="run">执行中</option>
+                                        <option ng-selected='project.status == "DEPLAY"' value="deplay">延期</option>
+                                        <option ng-selected='project.status == "END"' value="end">完结</option>
+                                        <option ng-selected='project.status == "FORCESTOP"' value="forcestop">异常终止</option>
                                     </select>
                                 </div>
                             </div>

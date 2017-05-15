@@ -29,7 +29,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public boolean register(String IDCard, String displayName, String password) {
-        return userService.create(displayName, IDCard, password, IDCard, "", "", "", "", "", "", 0, "", 0, "");
+        return userService.create(displayName, IDCard, password, IDCard, "", "", "", "", "", "", 0, "", 0, "", "admin");
     }
 
     @RequestMapping(value ="/list", method = RequestMethod.POST)
@@ -53,8 +53,9 @@ public class UserController {
                              String companyId,
                              String phone,
                              String email,
-                             String history) {
-        return userService.create(displayName, name, name, name, workNum, departmentId, "", phone, email, "", 0, history, 0, companyId);
+                             String history,
+                             String role) {
+        return userService.create(displayName, name, name, name, workNum, departmentId, "", phone, email, "", 0, history, 0, companyId, role);
     }
 
 }

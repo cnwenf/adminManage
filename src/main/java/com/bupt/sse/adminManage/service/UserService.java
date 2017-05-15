@@ -17,7 +17,7 @@ public class UserService {
     @Resource
     private UserDao userDao;
 
-    public boolean create(String displayName, String name, String password, String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment,String companyId) {
+    public boolean create(String displayName, String name, String password, String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment,String companyId, String role) {
         UserEntity userEntity = new UserEntity();
         userEntity.setDisplayName(displayName);
         userEntity.setName(name);
@@ -33,6 +33,7 @@ public class UserService {
         userEntity.setStatus(status);
         userEntity.setHistory(history);
         userEntity.setPayment(payment);
+        userEntity.setRole(role);
         return userDao.create(userEntity);
 
     }

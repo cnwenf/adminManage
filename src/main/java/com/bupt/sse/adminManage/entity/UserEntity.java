@@ -18,7 +18,7 @@ public class UserEntity {
     private String IDCard;
     private String workNum;
     private String companyId;
-    private Roles role;
+    private String role;
     private String departmentId;
     private String projectId;
     private String phone;
@@ -140,11 +140,11 @@ public class UserEntity {
         this.companyId = companyId;
     }
 
-    public Roles getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

@@ -50,6 +50,17 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label">角色</label>
+                                <div class="controls">
+                                    <select id="role" ng-model="project.status">
+                                        <option value="admin">企业管理员</option>
+                                        <option value="departmentadmin">企业部门管理员</option>
+                                        <option value="materialadmin">企业物资管理员</option>
+                                        <option value="normal">普通员工</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label">工号</label>
                                 <div class="controls">
                                     <input id="workNum" type="text" />
