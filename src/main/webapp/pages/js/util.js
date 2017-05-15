@@ -38,7 +38,8 @@ var api = {
     user: {
         list: "/adminManage/user/list",
         detail:"/adminManage/user/detail",
-        create:"/adminManage/user/create"
+        create:"/adminManage/user/create",
+        listByDepartment: "/adminManage/user/listByDepartment"
     },
     project: {
         create: "/adminManage/project/create",

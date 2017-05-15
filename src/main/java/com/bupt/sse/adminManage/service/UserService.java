@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,14 +50,27 @@ public class UserService {
 
     public List<UserEntity> list(String companyId) {
         List<UserEntity> userEntities = userDao.list();
+        List<UserEntity> result = new ArrayList<UserEntity>();
         for (UserEntity userEntity : userEntities) {
             if (null != userEntity.getCompanyId() && userEntity.getCompanyId().equals(companyId)) {
-                continue;
-            } else {
-                userEntities.remove(userEntity);
+                result.add(userEntity);
             }
         }
-        return userEntities;
+        return result;
+    }
+
+    public List<UserEntity> listByDepartment(String companyId, String departmentId) {
+        List<UserEntity> userEntities = userDao.list();
+        List<UserEntity> result = new ArrayList<UserEntity>();
+        for (UserEntity userEntity : userEntities) {
+            if (null != userEntity.getCompanyId()
+                    && userEntity.getCompanyId().equals(companyId)
+                    && null != userEntity.getDepartmentId()
+                    && userEntity.getDepartmentId().equals(departmentId)) {
+                result.add(userEntity);
+            }
+        }
+        return result;
     }
 
     public UserEntity get(String id) {

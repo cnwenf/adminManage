@@ -34,13 +34,14 @@ app.controller('userCCtrl', function($scope) {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var history = $("#history").val();
+        var role = $("#role").val();
         if ($.isEmptyObject(displayName) ||
             $.isEmptyObject(cardId) ||
             $.isEmptyObject(dpm) ||
             $.isEmptyObject(phone) ||
             $.isEmptyObject(email) ||
             $.isEmptyObject(workNum) ||
-            $.isEmptyObject(history)) {
+            $.isEmptyObject(role)) {
             alert("请填入完整信息！");
             return false;
         } else {
@@ -60,6 +61,7 @@ app.controller('userCCtrl', function($scope) {
                 "phone": phone,
                 "email": email,
                 "history": history,
+                "role": role
             };
             httpSyncPost(api.user.create, args, callBackFun);
         }

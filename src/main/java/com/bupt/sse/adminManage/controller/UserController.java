@@ -38,6 +38,12 @@ public class UserController {
         return userService.list(companyId);
     }
 
+    @RequestMapping(value ="/listByDepartment", method = RequestMethod.POST)
+    @ResponseBody
+    public List<UserEntity> listByDepartment(String companyId, String departmentId) {
+        return userService.listByDepartment(companyId, departmentId);
+    }
+
     @RequestMapping(value ="/detail", method = RequestMethod.POST)
     @ResponseBody
     public UserEntity get(String name) {
