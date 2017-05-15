@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>行政管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/multi-select.css" />
+    <link rel="stylesheet" href="css/unicorn.main.css" />
+    <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/excanvas.min.js"></script>
+    <script src="js/lib/jquery-3.1.1.min.js"></script>
+    <script src="js/lib/bootstrap-3.3.7.min.js"></script>
+    <script src="js/lib/jquery.flot.min.js"></script>
+    <script src="js/lib/jquery.flot.resize.min.js"></script>
+    <script src="js/lib/jquery.peity.min.js"></script>
+    <script src="js/lib/jquery-ui.custom.js"></script>
+    <script src="js/lib/fullcalendar.min.js"></script>
+    <script src="js/lib/unicorn.js"></script>
+    <script src="js/lib/unicorn.dashboard.js"></script>
+    <script src="js/lib/jquery.multi-select.js"></script>
+    <script src="js/lib/bootstrap-treeview.min.js"></script>
+
+</head>
+<body ng-app="projectEApp" ng-controller="projectECtrl">
+<div id="header" ng-include="'head.html'"></div>
+<div id="sidebar" ng-include="'sidebar.html'"></div>
+<div id="content">
+    <div id="content-header">
+        <h1 ng-if="isCreate">创建项目</h1>
+        <h1 ng-if="isEdit">编辑项目</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+								<span class="icon">
+									<i class="icon-align-justify"></i>
+								</span>
+                        <h5>项目信息</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" method="get" class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">项目名称</label>
+                                <div class="controls">
+                                    <span id="name">{{project.name}}</span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">所属部门</label>
+                                <div class="controls">
+                                    <span><a ng-href="department-detail.html?companyId={{project.companyId}}&id={{project.department.id}}" id="dpm">{{project.department.name}}</a></span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">项目主管</label>
+                                <div class="controls">
+                                    <span><a ng-href="user-detail.html?companyId={{project.companyId}}&id={{project.owner.name}}" id="owner">{{project.owner.displayName}}</a></span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">项目组员</label>
+                                <div class="controls">
+                                    <a style="margin-left: 5px" ng-repeat="p in project.persons" ng-href="user-detail.html?companyId={{project.companyId}}&id={{p.id}}">{{p.displayName}}</a>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">起始日期</label>
+                                <div class="controls">
+                                    <span id="startDate">{{project.startDate}}</span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">预期完成日期</label>
+                                <div class="controls">
+                                    <input id="endDate" type="text" ng-model="project.endDate"/>
+                                </div>
+                            </div>
+                            <div class="control-group" ng-if="isEdit">
+                                <label class="control-label">项目状态</label>
+                                <div class="controls">
+                                    <select id="status" ng-model="project.status">
+                                        <option value="run">执行中</option>
+                                        <option value="deplay">延期</option>
+                                        <option value="end">完结</option>
+                                        <option value="forcestop">异常终止</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">经费预算(元)</label>
+                                <div class="controls">
+                                    <input id="budget" type="text" ng-model="project.budget"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">项目简介</label>
+                                <div class="controls">
+                                    <textarea id="introduce" ng-model="project.introduce"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-actions">
+                            <button ng-if="isEdit" type="submit" class="btn btn-primary" ng-click="projectUpdate()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/util.js"></script>
+<script src="js/project-edit.js"></script>
+</body>
+</html>
