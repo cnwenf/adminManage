@@ -85,7 +85,7 @@ public class MaterialService {
         List<MaterialEntity> materialEntities = materialDao.list();
         List<MaterialEntity> result = new ArrayList<MaterialEntity>();
         for (MaterialEntity materialEntity : materialEntities) {
-            if(materialEntity.getProjectId().equals(projectId) && materialEntity.getStatus().equals("run")) {
+            if(materialEntity.getProjectId().equals(projectId)) {
                 result.add(materialEntity);
             }
         }

@@ -30,6 +30,7 @@ app.controller('MCCtrl', function($scope) {
                 alert("发起会议失败！");
             }
         };
+        $scope.meeting.time = $("#time").val();
         var args = {
             companyId: $scope.userInfo.companyId,
             projectId: $scope.meeting.project.id,

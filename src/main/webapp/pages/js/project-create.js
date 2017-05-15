@@ -8,6 +8,7 @@ app.controller('projectCECtrl', function($scope) {
     });
 
     function init() {
+        setSideActive("project_li", "project_create_li");
         $scope.userInfo = getLocalJson("userInfo");
         $scope.initArgs = getRequest();
         $scope.project = {

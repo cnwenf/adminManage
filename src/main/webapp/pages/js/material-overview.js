@@ -65,7 +65,7 @@ app.controller('MOCtrl', function($scope) {
                 alert("审批失败");
             }
         };
-        httpSyncPost(api.material.delete, {id: id, status: "pass", exInfo: ""}, cb);
+        httpSyncPost(api.material.update, {id: id, status: "pass", exInfo: ""}, cb);
     };
 
     $scope.stop = function(id) {
@@ -78,6 +78,6 @@ app.controller('MOCtrl', function($scope) {
                 alert("审批失败");
             }
         };
-        httpSyncPost(api.material.delete, {id: id, status: "end", exInfo: ""}, cb);
+        httpSyncPost(api.material.update, {id: id, status: "end", exInfo: ""}, cb);
     }
 });

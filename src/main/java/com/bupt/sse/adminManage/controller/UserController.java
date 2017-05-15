@@ -28,7 +28,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public boolean login(String IDCard, String displayName, String password) {
+    public boolean register(String IDCard, String displayName, String password) {
         return userService.create(displayName, IDCard, password, IDCard, "", "", "", "", "", "", 0, "", 0, "");
     }
 
