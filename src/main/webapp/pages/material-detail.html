@@ -45,46 +45,104 @@
                     </div>
                     <div class="widget-content">
                         <form action="#" method="get" class="form-horizontal" style="z-index: 200">
-                            <p class="amount-word">
-                                物资名称:
-                                <span id="name">{{material.name}}</span>
-                            </p>
-                            <p class="amount-word">
-                                物资数量:
-                                <span id="num">{{material.num}}</span>
-                            </p>
-                            <p class="amount-word">
-                                申请人:
-                                <span id="spUserName">{{material.spUserName}}</span>
-                            </p>
-                            <p class="amount-word">
-                                审批人:
-                                <span id="exUserName">{{material.exUserName}}</span>
-                            </p>
-                            <p class="amount-word">
-                                所属项目:
-                                <span><a ng-href="project-detail.html?companyId={{material.companyId}}&id={{material.projectId}}" id="dpm">{{material.projectName}}</a></span>
-                            </p>
-                            <p class="amount-word">
-                                物资使用时间:
-                                <span id="startDate">{{material.time}}</span>
-                            </p>
-                            <p class="amount-word">
-                                附加说明：
-                            </p>
-                            <textarea ng-model="material.spInfo" ng-disabled="true"></textarea>
-                            <p class="amount-word">
-                                审批状态:
-                                <select ng-disabled="userInfo.name != material.exUserId" id="status">
-                                    <option ng-selected='"run" == material.status' value="run" ng-model="material.status">审批中</option>
-                                    <option ng-selected='"pass" == material.status' value="pass" ng-model="material.status">通过</option>
-                                    <option ng-selected='"end" == material.status' value="end" ng-model="material.status">拒绝</option>
-                                </select>
-                            </p>
-                            <p class="amount-word">
-                                审批意见：
-                            </p>
-                            <textarea ng-model="material.exInfo" ng-disabled="userInfo.name != material.exUserId"></textarea>
+                            <div class="control-group">
+                                <label class="control-label">物资名称</label>
+                                <div class="controls">
+                                    <input ng-model="material.name" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">物资数量</label>
+                                <div class="controls">
+                                    <input ng-model="material.num" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">申请人</label>
+                                <div class="controls">
+                                    <input ng-model="material.spUserName" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">审批人</label>
+                                <div class="controls">
+                                    <input ng-model="material.exUserName" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">所属项目</label>
+                                <div class="controls">
+                                    <a ng-href="project-detail.html?companyId={{material.companyId}}&id={{material.projectId}}" id="dpm">{{material.projectName}}</a>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">物资使用时间</label>
+                                <div class="controls">
+                                    <input ng-model="material.time" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">附加说明</label>
+                                <div class="controls">
+                                    <input ng-model="material.spInfo" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">审批状态</label>
+                                <div class="controls">
+                                    <select ng-disabled="userInfo.name != material.exUserId" id="status">
+                                        <option ng-selected='"run" == material.status' value="run" ng-model="material.status">审批中</option>
+                                        <option ng-selected='"pass" == material.status' value="pass" ng-model="material.status">通过</option>
+                                        <option ng-selected='"end" == material.status' value="end" ng-model="material.status">拒绝</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">审批意见</label>
+                                <div class="controls">
+                                    <input ng-model="material.exInfo" ng-disabled="userInfo.name != material.exUserId"/>
+                                </div>
+                            </div>
+                            <!--<p class="amount-word">-->
+                                <!--物资名称:-->
+                                <!--<span id="name">{{material.name}}</span>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--物资数量:-->
+                                <!--<span id="num">{{material.num}}</span>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--申请人:-->
+                                <!--<span id="spUserName">{{material.spUserName}}</span>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--审批人:-->
+                                <!--<span id="exUserName">{{material.exUserName}}</span>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--所属项目:-->
+                                <!--<span><a ng-href="project-detail.html?companyId={{material.companyId}}&id={{material.projectId}}" id="dpm">{{material.projectName}}</a></span>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--物资使用时间:-->
+                                <!--<span id="startDate">{{material.time}}</span>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--附加说明：-->
+                            <!--</p>-->
+                            <!--<input ng-model="material.spInfo" ng-disabled="true"/>-->
+                            <!--<p class="amount-word">-->
+                                <!--审批状态:-->
+                                <!--<select ng-disabled="userInfo.name != material.exUserId" id="status">-->
+                                    <!--<option ng-selected='"run" == material.status' value="run" ng-model="material.status">审批中</option>-->
+                                    <!--<option ng-selected='"pass" == material.status' value="pass" ng-model="material.status">通过</option>-->
+                                    <!--<option ng-selected='"end" == material.status' value="end" ng-model="material.status">拒绝</option>-->
+                                <!--</select>-->
+                            <!--</p>-->
+                            <!--<p class="amount-word">-->
+                                <!--审批意见：-->
+                            <!--</p>-->
+                            <!--<input ng-model="material.exInfo" ng-disabled="userInfo.name != material.exUserId"/>-->
                         </form>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary" ng-click="update()" ng-if="userInfo.name == material.exUserId">更新</button>
