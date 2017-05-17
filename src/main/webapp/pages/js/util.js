@@ -33,7 +33,8 @@ var api = {
     department : {
         structure: "/adminManage/department/structure",
         get: "/adminManage/department/get",
-        list: "/adminManage/department/list"
+        list: "/adminManage/department/list",
+        delete: "/adminManage/department/delete"
     },
     user: {
         list: "/adminManage/user/list",

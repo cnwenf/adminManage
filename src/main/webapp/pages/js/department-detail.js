@@ -4,13 +4,14 @@
 var app = angular.module('departmentDApp', []);
 app.controller('departmentDCtrl', function($scope) {
     var initArgs = getRequest();
+    $scope.userInfo = getLocalJson("userInfo");
     $(document).ready(function () {
-
         httpSyncPost(api.department.get, {"companyId": initArgs["companyId"], "id": initArgs["id"]}, readyCallback);
     });
     function readyCallback(data) {
+        $scope.department = data;
         httpSyncPost(api.department.get, {"companyId": initArgs["companyId"], "id": data["parentId"]}, setParentName);
-        httpSyncPost(api.user.listByDepartment, {"companyId": initArgs["companyId"], "departmentId": initArgs["id"]}, getPersons);
+        httpSyncPost("/adminManage/user/listByDepartment", {"companyId": initArgs["companyId"], "departmentId": initArgs["id"]}, getPersons);
         $("#dpmName").text(data["name"]);
         $("#introduce").text(string2ChangeLine(data["description"]));
     }
@@ -20,8 +21,10 @@ app.controller('departmentDCtrl', function($scope) {
     }
 
     function getPersons(data) {
-        $scope.persons = data;
-        $scope.$apply();
+        if (data) {
+            $scope.persons = data;
+            $scope.$apply();
+        }
     }
     $scope.transRole = function(role) {
         switch (role){
@@ -34,5 +37,15 @@ app.controller('departmentDCtrl', function($scope) {
             case  "normal":
                 return "部员";
         }
+    }
+    $scope.delete = function() {
+        var cb = function(data) {
+            if (data) {
+                alert("删除部门成功！");
+            } else {
+                alert("删除部门失败！");
+            }
+        };
+        httpSyncPost("/adminManage/department/delete", {companyId: $scope.userInfo.companyId, id: initArgs.id}, cb);
     }
 });

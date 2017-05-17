@@ -52,16 +52,18 @@ public class DepartmentController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public void update(String companyId, String id,
+    public boolean update(String companyId, String id,
                        @RequestParam(required=false) String name,
                        @RequestParam(required=false) String description,
                        @RequestParam(required=false) String ownerId){
         departmentService.update(companyId, id, name, description, ownerId);
+        return true;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public void delete(String companyId, String id){
+    public boolean delete(String companyId, String id){
         departmentService.delete(companyId, id);
+        return true;
     }
 }

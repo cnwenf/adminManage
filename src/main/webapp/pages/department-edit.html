@@ -22,15 +22,15 @@
     <script src="js/lib/unicorn.dashboard.js"></script>
     <script src="js/lib/bootstrap-treeview.min.js"></script>
     <script src="js/util.js"></script>
-    <script src="js/department-create.js"></script>
+    <script src="js/department-edit.js"></script>
 </head>
-<body ng-app="DepartmentCApp" ng-controller="DepartmentCCtrl">
+<body ng-app="DepartmentEditApp" ng-controller="DepartmentEditCtrl">
 <div id="header" ng-include="'head.html'"></div>
 <div id="sidebar" ng-include="'sidebar.html'"></div>
 
 <div id="content">
     <div id="content-header">
-        <h1>创建部门</h1>
+        <h1>编辑部门</h1>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -47,10 +47,10 @@
                             <div class="control-group">
                                 <label class="control-label">部门名称</label>
                                 <div class="controls">
-                                    <input id="dpmName" type="text" />
+                                    <input id="dpmName" type="text" ng-model="department.name"/>
                                 </div>
                             </div>
-                            <div class="control-group">
+                            <div class="control-group" ng-disabled="true">
                                 <label class="control-label">上级部门</label>
                                 <div class="controls">
                                     <select id="dpmSelect">
@@ -60,13 +60,13 @@
                             <div class="control-group">
                                 <label class="control-label">部门简介</label>
                                 <div class="controls">
-                                    <textarea id="introduce"></textarea>
+                                    <textarea id="introduce" ng-model="department.introduce"></textarea>
                                 </div>
                             </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" ng-click="sureBtn()">确定</button>
-                            </div>
                         </form>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" ng-click="sureBtn()">确定</button>
+                        </div>
                     </div>
                 </div>
             </div>

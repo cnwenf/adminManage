@@ -4,30 +4,25 @@
     <title>行政管理系统</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap-3.3.7.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/fullcalendar.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/multi-select.css" />
     <link rel="stylesheet" href="css/unicorn.main.css" />
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
 
-
+    <script src="js/lib/angular.min.js"></script>
     <script src="js/lib/excanvas.min.js"></script>
     <script src="js/lib/jquery-3.1.1.min.js"></script>
+    <script src="js/lib/jquery-ui.custom.min.js"></script>
+    <script src="js/lib/jquery.multi-select.js"></script>
     <script src="js/lib/bootstrap-3.3.7.min.js"></script>
     <script src="js/lib/jquery.flot.min.js"></script>
     <script src="js/lib/jquery.flot.resize.min.js"></script>
-    <script src="js/lib/jquery.peity.min.js"></script>
-    <script src="js/lib/fullcalendar.min.js"></script>
     <script src="js/lib/unicorn.js"></script>
     <script src="js/lib/unicorn.dashboard.js"></script>
     <script src="js/lib/bootstrap-treeview.min.js"></script>
-    <script src="js/lib/angular.min.js"></script>
-
 </head>
 <body ng-app="departmentDApp" ng-controller="departmentDCtrl">
-<!--departmentDApp" ng-controller="departmentDCtrl"-->
-
-
 <div id="header" ng-include="'head.html'"></div>
 <div id="sidebar" ng-include="'sidebar.html'"></div>
 <div id="content">
@@ -35,6 +30,8 @@
         <h1>部门明细</h1>
         <div class="btn-group">
             <a class="btn btn-navbar" onclick="javascript:history.back(-1);" style="margin-right: 5px">返回</a>
+            <a class="btn btn-primary" ng-if='userInfo.role == "admin"' ng-href="department-edit.html?id={{department.id}}" style="margin-right: 5px">编辑部门</a>
+            <a class="btn btn-danger" ng-if='userInfo.role == "admin"' ng-disabled='persons.length != 0' ng-click="delete()" style="margin-right: 5px">删除</a>
         </div>
     </div>
     <div class="container-fluid">
@@ -57,10 +54,6 @@
                                 上级部门:
                                 <span><a href="" id="parentId">上级部门</a></span>
                             </p>
-                            <!--<p class="amount-word">-->
-                                <!--部门主管:-->
-                                <!--<span><a href="" id="ownerId">部门主管</a></span>-->
-                            <!--</p>-->
                             <p class="amount-word">
                                 部门简介:
                                 <span id="introduce">部门简介</span>
