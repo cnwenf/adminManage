@@ -94,4 +94,11 @@ public class MeetingService {
         meetingEntity.setLog(log);
         meetingDao.update(meetingEntity);
     }
+
+    public void deleteByProjectId(String projectId) {
+        List<MeetingEntity> meetingEntities = this.getListByProjectId(projectId);
+        for (MeetingEntity meetingEntity : meetingEntities) {
+            meetingDao.deleteById(meetingEntity.getId());
+        }
+    }
 }

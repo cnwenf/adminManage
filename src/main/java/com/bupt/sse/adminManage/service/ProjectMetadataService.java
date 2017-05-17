@@ -40,6 +40,24 @@ public class ProjectMetadataService {
         return result;
     }
 
+    public void deleteByProjectId(String projectId) {
+        List<ProjectMetadataEntity> projectMetadataEntities = this.getByProjectId(projectId);
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            projectMetadataDao.deleteById(projectMetadataEntity.getId());
+        }
+    }
+
+    public List<ProjectMetadataEntity> listByDepartmentId(String departmentId) {
+        List<ProjectMetadataEntity> result = new ArrayList<ProjectMetadataEntity>();
+        List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataDao.list();
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            if (projectMetadataEntity.getProjectMetadataType().equals(ProjectMetadataType.department) && projectMetadataEntity.getDataId().equals(departmentId)) {
+                result.add(projectMetadataEntity);
+            }
+        }
+        return result;
+    }
+
     public void delete(String id) {
         projectMetadataDao.deleteById(id);
     }

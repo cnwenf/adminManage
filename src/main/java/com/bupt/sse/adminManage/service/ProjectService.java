@@ -26,6 +26,10 @@ public class ProjectService {
     private UserService userService;
     @Resource
     private DepartmentService departmentService;
+    @Resource
+    private MeetingService meetingService;
+    @Resource
+    private MaterialService materialService;
 
     public boolean create (ProjectInfo projectInfo) {
         String id = projectInfo.getId();
@@ -100,5 +104,17 @@ public class ProjectService {
             }
         }
         return  projectInfos;
+    }
+
+    public boolean deleteByDepartmentId(String departmentId) {
+        List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataService.listByDepartmentId(departmentId);
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            String projectId = projectMetadataEntity.getProjectId();
+            meetingService.deleteByProjectId(projectId);
+            materialService.deleteByProjectId(projectId);
+            projectDao.deleteById(projectId);
+            projectMetadataService.deleteByProjectId(projectId);
+        }
+        return true;
     }
 }

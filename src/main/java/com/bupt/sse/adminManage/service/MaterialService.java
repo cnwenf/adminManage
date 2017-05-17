@@ -91,4 +91,11 @@ public class MaterialService {
         }
         return result;
     }
+
+    public void deleteByProjectId(String projectId) {
+        List<MaterialEntity> materialEntities = this.listByProject(projectId);
+        for (MaterialEntity materialEntity : materialEntities) {
+            materialDao.deleteById(materialEntity.getId());
+        }
+    }
 }

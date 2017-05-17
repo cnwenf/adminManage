@@ -19,6 +19,8 @@ import java.util.UUID;
 public class DepartmentService {
     @Resource
     private DepartmentDao departmentDao;
+    @Resource
+    private ProjectService projectService;
 
     private static String nodes = "nodes";
     private static String text = "text";
@@ -94,6 +96,7 @@ public class DepartmentService {
     }
 
     public void delete(String companyId, String id) {
+        projectService.deleteByDepartmentId(id);
         BasePK pk = new BasePK(companyId, id);
         departmentDao.deleteById(pk);
     }
