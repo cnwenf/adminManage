@@ -106,6 +106,46 @@ public class ProjectService {
         return  projectInfos;
     }
 
+    public List<ProjectInfo> listProjectInfo(String companyId, String userId) {
+        UserEntity userEntity = userService.get(userId);
+        if ("admin".equals(userEntity.getRole())) {
+            return list4admin(companyId);
+        } else if("departmentadmin".equals(userEntity.getRole())) {
+            return listByDepartmentId(companyId, userEntity.getDepartmentId());
+        } else {
+            return listByUserId(companyId, userEntity.getName());
+        }
+    }
+
+    private List<ProjectInfo> list4admin(String companyId) {
+        List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
+        List<ProjectEntity> projectEntities = projectDao.list();
+        for (ProjectEntity p : projectEntities) {
+            if (p.getCompanyId().equals(companyId)) {
+                projectInfos.add(getProjectInfo(companyId, p.getId()));
+            }
+        }
+        return projectInfos;
+    }
+
+    private List<ProjectInfo> listByDepartmentId(String companyId, String departmentId) {
+        List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
+        List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataService.listByDepartmentId(departmentId);
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            projectInfos.add(getProjectInfo(companyId, projectMetadataEntity.getProjectId()));
+        }
+        return projectInfos;
+    }
+
+    private List<ProjectInfo> listByUserId(String companyId, String userId) {
+        List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
+        List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataService.listByUserId(userId);
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            projectInfos.add(getProjectInfo(companyId, projectMetadataEntity.getProjectId()));
+        }
+        return projectInfos;
+    }
+
     public boolean deleteByDepartmentId(String departmentId) {
         List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataService.listByDepartmentId(departmentId);
         for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {

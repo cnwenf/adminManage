@@ -50,4 +50,10 @@ public class ProjectController {
     public List<ProjectInfo> list(String companyId) {
         return projectService.listProjectInfo(companyId);
     }
+
+    @RequestMapping(value = "/listByUserId", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ProjectInfo> list(String companyId, String userId) {
+        return projectService.listProjectInfo(companyId, userId);
+    }
 }

@@ -27,22 +27,12 @@ app.controller('projectOverviewCtrl', function($scope, $http) {
     };
 
     function getProjectList() {
-        // $http({
-        //     method: 'POST',
-        //     url: api.project.list,
-        //     data: $.param({companyId: $scope.userInfo.companyId}),
-        //     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        // }).success(function(data) {
-        //     if (data) {
-        //         $scope.projects = data;
-        //     }
-        //     });
         var callBackFuc = function(data) {
             if (data) {
                 $scope.projects = data;
             }
         };
-        httpSyncPost(api.project.list, {companyId: $scope.userInfo.companyId}, callBackFuc);
+        httpSyncPost(api.project.listByUserId, {companyId: $scope.userInfo.companyId, userId: $scope.userInfo.name}, callBackFuc);
     }
 
     function init() {

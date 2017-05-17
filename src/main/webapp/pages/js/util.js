@@ -46,6 +46,7 @@ var api = {
         create: "/adminManage/project/create",
         get: "/adminManage/project/get",
         list:"/adminManage/project/list",
+        listByUserId: "/adminManage/project/listByUserId",
         update:"/adminManage/project/update"
     },
     meeting: {

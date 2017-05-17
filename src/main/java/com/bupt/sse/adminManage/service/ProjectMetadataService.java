@@ -58,6 +58,18 @@ public class ProjectMetadataService {
         return result;
     }
 
+    public List<ProjectMetadataEntity> listByUserId(String userId) {
+        List<ProjectMetadataEntity> result = new ArrayList<ProjectMetadataEntity>();
+        List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataDao.list();
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            if ( (projectMetadataEntity.getProjectMetadataType().equals(ProjectMetadataType.owner)||
+            projectMetadataEntity.getProjectMetadataType().equals(ProjectMetadataType.persons)) && projectMetadataEntity.getDataId().equals(userId)) {
+                result.add(projectMetadataEntity);
+            }
+        }
+        return result;
+    }
+
     public void delete(String id) {
         projectMetadataDao.deleteById(id);
     }
