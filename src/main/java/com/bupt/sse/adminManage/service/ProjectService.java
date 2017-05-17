@@ -110,11 +110,16 @@ public class ProjectService {
         List<ProjectMetadataEntity> projectMetadataEntities = projectMetadataService.listByDepartmentId(departmentId);
         for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
             String projectId = projectMetadataEntity.getProjectId();
-            meetingService.deleteByProjectId(projectId);
-            materialService.deleteByProjectId(projectId);
-            projectDao.deleteById(projectId);
-            projectMetadataService.deleteByProjectId(projectId);
+            this.delete(projectId);
         }
+        return true;
+    }
+
+    public boolean delete(String id) {
+        meetingService.deleteByProjectId(id);
+        materialService.deleteByProjectId(id);
+        projectMetadataService.deleteByProjectId(id);
+        projectDao.deleteById(id);
         return true;
     }
 }
