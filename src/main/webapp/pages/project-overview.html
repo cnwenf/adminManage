@@ -12,39 +12,7 @@
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
 
     <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/excanvas.min.js"></script>
-    <script src="js/lib/jquery-3.1.1.min.js"></script>
-    <script src="js/lib/bootstrap-3.3.7.min.js"></script>
-    <script src="js/lib/jquery.flot.min.js"></script>
-    <script src="js/lib/jquery.flot.resize.min.js"></script>
-    <script src="js/lib/jquery.peity.min.js"></script>
-    <script src="js/lib/jquery-ui.custom.js"></script>
-    <script src="js/lib/fullcalendar.min.js"></script>
-    <script src="js/lib/unicorn.js"></script>
-    <script src="js/lib/unicorn.dashboard.js"></script>
-    <script src="js/lib/jquery.multi-select.js"></script>
-    <script src="js/lib/bootstrap-treeview.min.js"></script>
 
-    <!--<link rel="stylesheet" href="css/bootstrap.min.css" />-->
-    <!--<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />-->
-    <!--<link rel="stylesheet" href="css/jquery-ui.css" />-->
-    <!--<link rel="stylesheet" href="css/fullcalendar.css" />-->
-    <!--<link rel="stylesheet" href="css/unicorn.main.css" />-->
-    <!--<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />-->
-
-    <!--<script src="js/lib/jquery-3.1.1.min.js"></script>-->
-    <!--<script src="js/lib/excanvas.min.js"></script>-->
-    <!--<script src="js/lib/bootstrap-3.3.7.min.js"></script>-->
-    <!--<script src="js/lib/jquery.flot.min.js"></script>-->
-    <!--<script src="js/lib/jquery.flot.resize.min.js"></script>-->
-    <!--<script src="js/lib/jquery.peity.min.js"></script>-->
-    <!--<script src="js/lib/jquery-ui.custom.js"></script>-->
-    <!--<script src="js/lib/jquery.blockUI.js"></script>-->
-    <!--<script src="js/lib/fullcalendar.min.js"></script>-->
-    <!--<script src="js/lib/unicorn.js"></script>-->
-    <!--<script src="js/lib/unicorn.dashboard.js"></script>-->
-    <!--<script src="js/lib/bootstrap-treeview.min.js"></script>-->
-    <!--<script src="js/lib/angular.min.js"></script>-->
 
 </head>
 <body ng-app="projectOverviewApp" ng-controller="projectOverviewCtrl">
@@ -66,7 +34,7 @@
                         <h5>项目列表</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-bordered table-striped table-hover data-table">
                             <thead>
                             <tr>
                                 <th>项目名称</th>
@@ -74,14 +42,14 @@
                                 <th>项目主管</th>
                                 <th>项目状态</th>
                             </tr>
+                            </thead>
+                            <tbody id="tableBody">
                             <tr ng-repeat="p in projects">
                                 <td><a ng-href="project-detail.html?companyId={{p.companyId}}&id={{p.id}}">{{ p.name }}</a></td>
                                 <td><a ng-href="department-detail.html?companyId={{p.companyId}}&id={{p.department.id}}">{{ p.department.name }}</a></td>
                                 <td><a ng-href="user-detail.html?companyId={{p.companyId}}&id={{p.owner.name}}">{{ p.owner.displayName }}</a></td>
                                 <td><span ng-style="{'color': selectStatusColor(p.status) }">{{ transStatus(p.status) }}</span></td>
                             </tr>
-                            </thead>
-                            <tbody id="tableBody">
                             </tbody>
                         </table>
                     </div>
@@ -90,7 +58,19 @@
         </div>
     </div>
 </div>
-
+<script src="js/lib/excanvas.min.js"></script>
+<script src="js/lib/jquery-3.1.1.min.js"></script>
+<script src="js/lib/bootstrap-3.3.7.min.js"></script>
+<script src="js/lib/jquery.flot.min.js"></script>
+<script src="js/lib/jquery.flot.resize.min.js"></script>
+<script src="js/lib/jquery.peity.min.js"></script>
+<script src="js/lib/jquery-ui.custom.js"></script>
+<script src="js/lib/jquery.dataTables.min.js"></script>
+<script src="js/lib/fullcalendar.min.js"></script>
+<script src="js/lib/unicorn.js"></script>
+<script src="js/lib/unicorn.dashboard.js"></script>
+<script src="js/lib/jquery.multi-select.js"></script>
+<script src="js/lib/bootstrap-treeview.min.js"></script>
 <script src="js/util.js"></script>
 <script src="js/project-overview.js"></script>
 </body>

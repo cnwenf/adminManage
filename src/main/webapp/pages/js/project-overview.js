@@ -8,6 +8,11 @@ app.controller('projectOverviewCtrl', function($scope, $http) {
         setSideActive("project_li", "project_overview_li");
         init();
         $scope.$apply();
+        $('.data-table').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "sDom": '<""l>t<"F"fp>'
+        });
 
     });
     $scope.selectStatusColor = function (status) {
