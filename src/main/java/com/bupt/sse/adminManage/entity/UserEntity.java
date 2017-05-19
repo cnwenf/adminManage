@@ -20,6 +20,7 @@ public class UserEntity {
     private String companyId;
     private String role;
     private String departmentId;
+    private String departmentName;
     private String projectId;
     private String phone;
     private String email;
@@ -146,5 +147,13 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 }

@@ -5,6 +5,7 @@ var app = angular.module('userCApp', []);
 app.controller('userCCtrl', function($scope) {
     var userInfo = getLocalJson("userInfo");
     $(document).ready(function () {
+        setSideActive("user_li","user_create_li");
         init();
     });
 

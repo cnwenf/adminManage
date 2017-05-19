@@ -1,11 +1,11 @@
 /**
  * Created by WenFe on 2017/4/18.
  */
-var app = angular.module('projectOverviewApp', []);
-app.controller('projectOverviewCtrl', function($scope, $http, $q) {
+var app = angular.module('userListApp', []);
+app.controller('userListCtrl', function($scope, $http, $q) {
     $scope.userInfo = getLocalJson("userInfo");
     $(document).ready(function () {
-        setSideActive("project_li", "project_overview_li");
+        setSideActive("user_li", "user_list_li");
         init();
         $scope.$apply();
         $('.data-table').dataTable({
@@ -31,17 +31,17 @@ app.controller('projectOverviewCtrl', function($scope, $http, $q) {
         }
     };
 
-    function getProjectList() {
+    function getUserList() {
 
         var callBackFuc = function(data) {
             if (data) {
-                $scope.projects = data;
+                $scope.users = data;
             }
         };
-        httpSyncPost(api.project.listByUserId, {companyId: $scope.userInfo.companyId, userId: $scope.userInfo.name}, callBackFuc);
+        httpSyncPost(api.user.list, {companyId: $scope.userInfo.companyId}, callBackFuc);
     }
 
     function init() {
-        getProjectList();
+        getUserList();
     }
 });

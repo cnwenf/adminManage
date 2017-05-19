@@ -15,14 +15,14 @@
 
 
 </head>
-<body ng-app="projectOverviewApp" ng-controller="projectOverviewCtrl">
+<body ng-app="userListApp" ng-controller="userListCtrl">
 <div id="header" ng-include="'head.html'"></div>
 <div id="sidebar" ng-include="'sidebar.html'"></div>
 
 <div id="content">
-    <script src="js/project-overview.js" defer></script>
+    <script src="js/user-list.js" defer></script>
     <div id="content-header">
-        <h1>项目概览</h1>
+        <h1>人员查询</h1>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -32,24 +32,24 @@
 								<span class="icon">
 									<i class="icon-align-justify"></i>
 								</span>
-                        <h5>项目列表</h5>
+                        <h5>人员列表</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped table-hover data-table">
                             <thead>
                             <tr>
-                                <th>项目名称</th>
+                                <th>姓名</th>
+                                <th>工号</th>
                                 <th>所属部门</th>
-                                <th>项目主管</th>
-                                <th>项目状态</th>
+                                <th>联系电话</th>
                             </tr>
                             </thead>
                             <tbody id="tableBody">
-                            <tr ng-repeat="p in projects">
-                                <td><a ng-href="project-detail.html?companyId={{p.companyId}}&id={{p.id}}">{{ p.name }}</a></td>
-                                <td><a ng-href="department-detail.html?companyId={{p.companyId}}&id={{p.department.id}}">{{ p.department.name }}</a></td>
-                                <td><a ng-href="user-detail.html?companyId={{p.companyId}}&id={{p.owner.name}}">{{ p.owner.displayName }}</a></td>
-                                <td><span ng-style="{'color': selectStatusColor(p.status) }">{{ transStatus(p.status) }}</span></td>
+                            <tr ng-repeat="u in users">
+                                <td><a ng-href="user-detail.html?companyId={{u.companyId}}&id={{u.name}}">{{ u.displayName }}</a></td>
+                                <td>{{ u.workNum }}</td>
+                                <td>{{ u.departmentName }}</td>
+                                <td>{{ u.phone }}</td>
                             </tr>
                             </tbody>
                         </table>

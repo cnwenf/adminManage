@@ -17,6 +17,8 @@ import java.util.UUID;
 public class UserService {
     @Resource
     private UserDao userDao;
+    @Resource
+    private DepartmentService departmentService;
 
     public boolean create(String displayName, String name, String password, String IDCard, String workNum, String departmentId, String projectId, String phone, String email, String time, int status, String history, int payment,String companyId, String role) {
         UserEntity userEntity = new UserEntity();
@@ -27,6 +29,7 @@ public class UserService {
         userEntity.setWorkNum(workNum);
         userEntity.setCompanyId(companyId);
         userEntity.setDepartmentId(departmentId);
+        userEntity.setDepartmentName(departmentService.getById(companyId, departmentId).getName());
         userEntity.setProjectId(projectId);
         userEntity.setPhone(phone);
         userEntity.setEmail(email);
