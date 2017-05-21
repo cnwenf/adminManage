@@ -8,18 +8,24 @@ app.controller('userDetailCtl', function($scope) {
     $scope.userInfo = getLocalJson("userInfo");
     $(document).ready(function () {
         httpSyncPost(api.user.detail, {"name": initArgs["id"]}, setInfo);
-        //setProjects();
+        setSideActive("user_li", "user_list_li");
     });
 
     function setInfo(data) {
         $scope.user = data;
-        // $("#displayName").text(data["displayName"]);
-        // $("#phone").text(data["phone"]);
-        // $("#email").text(data["email"]);
-        // $("#introduce").text(data["history"]);
-        // $("#workNum").text(data["workNum"]);
         httpSyncPost(api.department.list, {"companyId": $scope.user["companyId"]}, function (data) {
-           $scope.departments = data;
+           if ("admin" == $scope.userInfo.role) {
+               $scope.departments = data;
+               for (var index in $scope.departments) {
+                   var p = null;
+                   if ($scope.user.departmentId == $scope.departments[index].id) {
+                       p = "<option selected='selected' value=" + "'"+ $scope.departments[index].id +"'>" + $scope.departments[index].name + "</option>"
+                   } else {
+                       p = "<option value=" + "'"+ $scope.departments[index].id +"'>" + $scope.departments[index].name + "</option>"
+                   }
+                   $("#departmentSelect").append(p);
+               }
+           }
         });
         //httpSyncPost(api.department.get, {"companyId": userInfo["companyId"], "id": data["departmentId"]}, setDpm);
     }
@@ -55,8 +61,7 @@ app.controller('userDetailCtl', function($scope) {
     }
 
     $scope.update = function () {
-        $scope.user.departmentId = $scope.projectSelect.id;
-        $scope.user.departmentName = $scope.projectSelect.name;
+        $scope.user.departmentId = $("#departmentSelect").val();
         var args = {
             name: $scope.user.name,
             displayName: $scope.user.displayName,

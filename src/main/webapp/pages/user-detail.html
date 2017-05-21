@@ -19,7 +19,10 @@
 
 <div id="content">
     <div id="content-header">
-        <h1>人员查询</h1>
+        <h1>人员信息</h1>
+        <div class="btn-group">
+            <a class="btn btn-navbar" onclick="javascript:history.back(-1);" style="margin-right: 5px">返回</a>
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -72,22 +75,19 @@
                             <div class="control-group">
                                 <label class="control-label">身份证号码</label>
                                 <div class="controls">
-                                    <input id="ID" type="text" ng-model="user.name"/>
+                                    <input id="ID" type="text" ng-model="user.name" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">工号</label>
                                 <div class="controls">
-                                    <input id="num" type="text" ng-model="user.workNum"/>
+                                    <input id="num" type="text" ng-model="user.workNum" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">部门</label>
                                 <div class="controls">
-                                    <select ng-model="projectSelect">
-                                        <option ng-selected='d.id == user.departmentId' ng-repeat="d in departments">
-                                            {{d.name}}
-                                        </option>
+                                    <select ng-model="projectSelect" id="departmentSelect">
                                     </select>
                                 </div>
                             </div>
