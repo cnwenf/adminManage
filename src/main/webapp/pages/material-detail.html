@@ -4,12 +4,12 @@
     <title>行政管理系统</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <link rel="stylesheet" href="css/multi-select.css" />
     <link rel="stylesheet" href="css/unicorn.main.css" />
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css"/>
 
     <script src="js/lib/angular.min.js"></script>
 </head>
@@ -35,29 +35,29 @@
                         <h5>审批信息</h5>
                     </div>
                     <div class="widget-content">
-                        <form action="#" method="get" class="form-horizontal" style="z-index: 200">
+                        <form action="#" method="get" class="form-horizontal">
                             <div class="control-group">
-                                <label class="control-label">物资名称</label>
+                                <label class="control-label">项目名称</label>
                                 <div class="controls">
-                                    <input ng-model="material.name" ng-disabled="true"/>
+                                    <input type="text" ng-model="material.name" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">物资数量</label>
                                 <div class="controls">
-                                    <input ng-model="material.num" ng-disabled="true"/>
+                                    <input type="text" ng-model="material.num" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">申请人</label>
                                 <div class="controls">
-                                    <input ng-model="material.spUserName" ng-disabled="true"/>
+                                    <input type="text" ng-model="material.spUserName" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">审批人</label>
                                 <div class="controls">
-                                    <input ng-model="material.exUserName" ng-disabled="true"/>
+                                    <input type="text" ng-model="material.exUserName" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -69,13 +69,13 @@
                             <div class="control-group">
                                 <label class="control-label">物资使用时间</label>
                                 <div class="controls">
-                                    <input ng-model="material.time" ng-disabled="true"/>
+                                    <input type="text" ng-model="material.time" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">附加说明</label>
                                 <div class="controls">
-                                    <input ng-model="material.spInfo" ng-disabled="true"/>
+                                    <input type="text" ng-model="material.spInfo" ng-disabled="true"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -91,7 +91,7 @@
                             <div class="control-group">
                                 <label class="control-label">审批意见</label>
                                 <div class="controls">
-                                    <input ng-model="material.exInfo" ng-disabled="userInfo.name != material.exUserId"/>
+                                    <input type="text" ng-model="material.exInfo" ng-disabled="userInfo.name != material.exUserId"/>
                                 </div>
                             </div>
                         </form>
@@ -106,15 +106,14 @@
 </div>
 <script src="js/lib/excanvas.min.js"></script>
 <script src="js/lib/jquery-3.1.1.min.js"></script>
+<script src="js/lib/jquery-ui.custom.min.js"></script>
+<script src="js/lib/jquery.datetimepicker.js"></script>
+<script src="js/lib/jquery.multi-select.js"></script>
 <script src="js/lib/bootstrap-3.3.7.min.js"></script>
 <script src="js/lib/jquery.flot.min.js"></script>
 <script src="js/lib/jquery.flot.resize.min.js"></script>
-<script src="js/lib/jquery.peity.min.js"></script>
-<script src="js/lib/jquery-ui.custom.js"></script>
-<script src="js/lib/fullcalendar.min.js"></script>
 <script src="js/lib/unicorn.js"></script>
 <script src="js/lib/unicorn.dashboard.js"></script>
-<script src="js/lib/jquery.multi-select.js"></script>
 <script src="js/lib/bootstrap-treeview.min.js"></script>
 <script src="js/util.js"></script>
 <script src="js/material-detail.js"></script>

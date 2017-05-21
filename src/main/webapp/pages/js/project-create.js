@@ -134,7 +134,9 @@ app.controller('projectCECtrl', function($scope) {
         var projectInfo  = JSON.stringify($scope.project);
         httpSyncPost(api.project.update, {"projectInfo": projectInfo}, function(data){
             if (data) {
-                alert("suc");
+                alert("创建项目成功！");
+            } else {
+                alert("创建项目失败！");
             }
         });
         return false;
