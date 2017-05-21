@@ -100,5 +100,8 @@ public class UserService {
         userDao.update(userEntity);
         return true;
     }
-//    public void delete()
+    public boolean delete(String id) {
+        userDao.deleteById(id);
+        return true;
+    }
 }

@@ -40,6 +40,16 @@ public class ProjectMetadataService {
         return result;
     }
 
+    public List<ProjectMetadataEntity> getByProjectId(String projectId, List<ProjectMetadataEntity> projectMetadataEntities) {
+        List<ProjectMetadataEntity> result = new ArrayList<ProjectMetadataEntity>();
+        for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
+            if (projectMetadataEntity.getProjectId().equals(projectId)) {
+                result.add(projectMetadataEntity);
+            }
+        }
+        return result;
+    }
+
     public void deleteByProjectId(String projectId) {
         List<ProjectMetadataEntity> projectMetadataEntities = this.getByProjectId(projectId);
         for (ProjectMetadataEntity projectMetadataEntity : projectMetadataEntities) {
@@ -56,6 +66,10 @@ public class ProjectMetadataService {
             }
         }
         return result;
+    }
+
+    public List<ProjectMetadataEntity> list () {
+        return projectMetadataDao.list();
     }
 
     public List<ProjectMetadataEntity> listByUserId(String userId) {

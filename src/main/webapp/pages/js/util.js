@@ -34,6 +34,7 @@ var api = {
         structure: "/adminManage/department/structure",
         get: "/adminManage/department/get",
         list: "/adminManage/department/list",
+        existChild: "/adminManage/department/existChild",
         delete: "/adminManage/department/delete"
     },
     user: {
@@ -41,7 +42,8 @@ var api = {
         detail:"/adminManage/user/detail",
         create:"/adminManage/user/create",
         listByDepartment: "/adminManage/user/listByDepartment",
-        update: "/adminManage/user/update"
+        update: "/adminManage/user/update",
+        delete: "/adminManage/user/delete"
     },
     project: {
         create: "/adminManage/project/create",

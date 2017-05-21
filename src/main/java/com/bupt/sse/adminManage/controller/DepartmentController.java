@@ -66,4 +66,11 @@ public class DepartmentController {
         departmentService.delete(companyId, id);
         return true;
     }
+
+    @RequestMapping(value = "/existChild", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean existChild(String companyId, String id){
+        departmentService.existChild(companyId, id);
+        return true;
+    }
 }

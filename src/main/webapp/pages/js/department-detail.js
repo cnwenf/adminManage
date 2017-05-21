@@ -5,13 +5,18 @@ var app = angular.module('departmentDApp', []);
 app.controller('departmentDCtrl', function($scope) {
     var initArgs = getRequest();
     $scope.userInfo = getLocalJson("userInfo");
+    $scope.existChild = false;
     $(document).ready(function () {
+        setSideActive("department_li", "department_overview_li");
         httpSyncPost(api.department.get, {"companyId": initArgs["companyId"], "id": initArgs["id"]}, readyCallback);
     });
     function readyCallback(data) {
         $scope.department = data;
         httpSyncPost(api.department.get, {"companyId": initArgs["companyId"], "id": data["parentId"]}, setParentName);
         httpSyncPost("/adminManage/user/listByDepartment", {"companyId": initArgs["companyId"], "departmentId": initArgs["id"]}, getPersons);
+        httpAsyncPost(api.department.existChild, {"companyId": initArgs["companyId"], "id": data["id"]}, function(data) {
+            $scope.existChild = data;
+        });
         $("#dpmName").text(data["name"]);
         $("#introduce").text(string2ChangeLine(data["description"]));
     }

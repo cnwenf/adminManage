@@ -62,6 +62,7 @@ app.controller('userDetailCtl', function($scope) {
 
     $scope.update = function () {
         $scope.user.departmentId = $("#departmentSelect").val();
+        $scope.user.role = $("#roleSelect").val();
         var args = {
             name: $scope.user.name,
             displayName: $scope.user.displayName,
@@ -77,6 +78,16 @@ app.controller('userDetailCtl', function($scope) {
                 alert("更新成功！");
             } else {
                 alert("更新失败！");
+            }
+        });
+    };
+
+    $scope.delete = function() {
+        httpSyncPost(api.user.delete, {id: $scope.user.name}, function(data) {
+            if (data) {
+                alert("删除成功！");
+            } else {
+                alert("删除失败！");
             }
         });
     }

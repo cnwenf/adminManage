@@ -16,7 +16,7 @@ app.controller('DepartmentEditCtrl', function($scope) {
         function(data){
             $scope.department = data;
         });
-        setSideActive("department_li", "department_create_li");
+        setSideActive("department_li", "department_overview_li");
         $.ajaxSetup({
             async: false
         });

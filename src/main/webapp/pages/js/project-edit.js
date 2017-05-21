@@ -11,7 +11,7 @@ app.controller('projectECtrl', function($scope) {
     });
 
     function init() {
-        setSideActive("project_li", "project_create_li");
+        setSideActive("project_li", "project_overview_li");
         $scope.userInfo = getLocalJson("userInfo");
         $scope.initArgs = getRequest();
         $scope.project = {

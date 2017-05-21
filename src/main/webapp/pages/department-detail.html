@@ -31,7 +31,7 @@
         <div class="btn-group">
             <a class="btn btn-navbar" onclick="javascript:history.back(-1);" style="margin-right: 5px">返回</a>
             <a class="btn btn-primary" ng-if='userInfo.role == "admin"' ng-href="department-edit.html?id={{department.id}}" style="margin-right: 5px">编辑部门</a>
-            <a class="btn btn-danger" ng-if='userInfo.role == "admin"' ng-disabled='persons.length != 0' ng-click="delete()" style="margin-right: 5px">删除</a>
+            <a class="btn btn-danger" ng-if='userInfo.role == "admin"' ng-disabled='persons.length != 0 || existChild' ng-click="delete()" style="margin-right: 5px">删除</a>
         </div>
     </div>
     <div class="container-fluid">

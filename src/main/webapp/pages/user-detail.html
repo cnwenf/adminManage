@@ -22,6 +22,7 @@
         <h1>人员信息</h1>
         <div class="btn-group">
             <a class="btn btn-navbar" onclick="javascript:history.back(-1);" style="margin-right: 5px">返回</a>
+            <a class="btn btn-danger" ng-click="delete()" style="margin-right: 5px" ng-if='userInfo.role =="admin"'>删除</a>
         </div>
     </div>
     <div class="container-fluid">
@@ -82,6 +83,17 @@
                                 <label class="control-label">工号</label>
                                 <div class="controls">
                                     <input id="num" type="text" ng-model="user.workNum" ng-disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">角色</label>
+                                <div class="controls">
+                                    <select id="roleSelect">
+                                        <option ng-selected='user.role == "admin"' value="admin">企业管理员</option>
+                                        <option ng-selected='user.role == "departmentadmin"' value="departmentadmin">企业部门管理员</option>
+                                        <option ng-selected='user.role == "materialadmin"' value="materialadmin">企业物资管理员</option>
+                                        <option ng-selected='user.role == "normal"' value="normal">普通员工</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="control-group">

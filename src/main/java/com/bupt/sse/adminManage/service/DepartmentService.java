@@ -108,4 +108,14 @@ public class DepartmentService {
         }
         return jsonObjects;
     }
+
+    public boolean existChild(String companyId, String id) {
+        List<DepartmentEntity> departmentEntityList = this.list(companyId);
+        for (DepartmentEntity departmentEntity : departmentEntityList) {
+            if (id.equals(departmentEntity.getParentId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

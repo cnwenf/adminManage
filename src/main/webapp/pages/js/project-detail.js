@@ -6,7 +6,7 @@ app.controller('projectDetailCtrl', function($scope) {
     $scope.initArgs = getRequest();
     $scope.userInfo = getLocalJson("userInfo");
     $(document).ready(function() {
-        //setSideActive("project_li", "project_detail_li");
+        setSideActive("project_li", "project_overview_li");
         init();
     });
 

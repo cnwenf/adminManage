@@ -76,13 +76,18 @@ public class UserController {
                           String history,
                           String role) {
         return userService.update(name,
-                 displayName,
-                 departmentId,
-                 workNum,
-                 phone,
-                 email,
-                 history,
-                 role);
+                displayName,
+                departmentId,
+                workNum,
+                phone,
+                email,
+                history,
+                role);
     }
 
+    @RequestMapping(value ="/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean delete(String id) {
+        return userService.delete(id);
+    }
 }
