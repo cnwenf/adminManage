@@ -50,7 +50,9 @@ app.controller('projectECtrl', function($scope) {
         var projectInfo  = JSON.stringify($scope.project);
         httpSyncPost(api.project.update, {"projectInfo": projectInfo}, function(data){
             if (data) {
-                alert("suc");
+                alert("更新成功！");
+            } else {
+                alert("更新失败！");
             }
         });
         return false;
