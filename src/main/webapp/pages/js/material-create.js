@@ -30,7 +30,7 @@ app.controller('MaterialCCtrl', function($scope) {
                 $scope.users = data;
             }
         };
-        httpSyncPost(api.user.list, {companyId: $scope.userInfo.companyId}, callBackFun);
+        httpSyncPost(api.user.listByRole, {companyId: $scope.userInfo.companyId, role: "materialadmin"}, callBackFun);
     }
 
     $scope.create = function() {

@@ -11,16 +11,6 @@
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
 
     <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/excanvas.min.js"></script>
-    <script src="js/lib/jquery-3.1.1.min.js"></script>
-    <script src="js/lib/jquery-ui.custom.min.js"></script>
-    <script src="js/lib/jquery.multi-select.js"></script>
-    <script src="js/lib/bootstrap-3.3.7.min.js"></script>
-    <script src="js/lib/jquery.flot.min.js"></script>
-    <script src="js/lib/jquery.flot.resize.min.js"></script>
-    <script src="js/lib/unicorn.js"></script>
-    <script src="js/lib/unicorn.dashboard.js"></script>
-    <script src="js/lib/bootstrap-treeview.min.js"></script>
 </head>
 <body ng-app="MOApp" ng-controller="MOCtrl">
 <div id="header" ng-include="'head.html'"></div>
@@ -45,7 +35,7 @@
                     </div>
                     <div class="widget-content nopadding">
 
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-bordered table-striped table-hover data-table">
                             <thead>
                             <tr>
                                 <th>物资名称</th>
@@ -53,6 +43,8 @@
                                 <th>使用时间</th>
                                 <th>状态</th>
                                 <th>操作</th>
+                            </thead>
+                            <tbody>
                             <tr ng-repeat="s in spMaterial">
                                 <td><a ng-href="material-detail.html?companyId={{s.companyId}}&id={{s.id}}">{{s.name}}</a></td>
                                 <td>{{s.num}}</td>
@@ -64,7 +56,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            </thead>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -84,7 +76,7 @@
                     </div>
                     <div class="widget-content nopadding">
 
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-bordered table-striped table-hover data-table">
                             <thead>
                             <tr>
                                 <th>物资名称</th>
@@ -93,6 +85,8 @@
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
+                            </thead>
+                            <tbody id="tableBody">
                             <tr ng-repeat="e in exMaterial">
                                 <td><a ng-href="material-detail.html?companyId={{e.companyId}}&id={{e.id}}">{{e.name}}</a></td>
                                 <td>{{e.num}}</td>
@@ -107,8 +101,6 @@
                                     </a>
                                 </td>
                             </tr>
-                            </thead>
-                            <tbody id="tableBody">
                             </tbody>
                         </table>
                     </div>
@@ -117,7 +109,17 @@
         </div>
     </div>
 </div>
-
+<script src="js/lib/excanvas.min.js"></script>
+<script src="js/lib/jquery-3.1.1.min.js"></script>
+<script src="js/lib/jquery-ui.custom.min.js"></script>
+<script src="js/lib/jquery.multi-select.js"></script>
+<script src="js/lib/bootstrap-3.3.7.min.js"></script>
+<script src="js/lib/jquery.flot.min.js"></script>
+<script src="js/lib/jquery.flot.resize.min.js"></script>
+<script src="js/lib/jquery.dataTables.min.js"></script>
+<script src="js/lib/unicorn.js"></script>
+<script src="js/lib/unicorn.dashboard.js"></script>
+<script src="js/lib/bootstrap-treeview.min.js"></script>
 <script src="js/util.js"></script>
 <script src="js/material-overview.js"></script>
 </body>

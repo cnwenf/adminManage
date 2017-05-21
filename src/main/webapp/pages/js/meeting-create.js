@@ -19,7 +19,7 @@ app.controller('MCCtrl', function($scope) {
                 $scope.projects = data;
             }
         }
-        httpSyncPost(api.project.list, {companyId: $scope.userInfo.companyId}, callBackFun);
+        httpSyncPost(api.project.listByUserId, {companyId: $scope.userInfo.companyId, userId: $scope.userInfo.name}, callBackFun);
     }
 
     $scope.create = function () {

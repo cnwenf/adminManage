@@ -20,6 +20,11 @@ app.controller('MOCtrl', function($scope) {
         setSideActive("material-li", "material-overview-li");
         getSpMaterial();
         getExMaterial();
+        $('.data-table').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "sDom": '<""l>t<"F"fp>'
+        });
     }
 
     function getSpMaterial() {

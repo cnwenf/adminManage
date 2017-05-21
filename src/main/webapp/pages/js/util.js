@@ -42,6 +42,7 @@ var api = {
         detail:"/adminManage/user/detail",
         create:"/adminManage/user/create",
         listByDepartment: "/adminManage/user/listByDepartment",
+        listByRole: "/adminManage/user/listByRole",
         update: "/adminManage/user/update",
         delete: "/adminManage/user/delete"
     },

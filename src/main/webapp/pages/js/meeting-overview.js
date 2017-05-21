@@ -5,6 +5,11 @@ var app = angular.module('MOApp', []);
 app.controller('MOCtrl', function($scope) {
     $(document).ready(function () {
         init();
+        $('.data-table').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "sDom": '<""l>t<"F"fp>'
+        });
     });
 
     function init() {

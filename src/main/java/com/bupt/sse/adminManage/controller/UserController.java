@@ -44,6 +44,12 @@ public class UserController {
         return userService.listByDepartment(companyId, departmentId);
     }
 
+    @RequestMapping(value ="/listByRole", method = RequestMethod.POST)
+    @ResponseBody
+    public List<UserEntity> listByRole(String companyId, String role) {
+        return userService.listByRole(companyId, role);
+    }
+
     @RequestMapping(value ="/detail", method = RequestMethod.POST)
     @ResponseBody
     public UserEntity get(String name) {

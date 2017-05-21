@@ -12,18 +12,6 @@
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
 
     <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/excanvas.min.js"></script>
-    <script src="js/lib/jquery-3.1.1.min.js"></script>
-    <script src="js/lib/bootstrap-3.3.7.min.js"></script>
-    <script src="js/lib/jquery.flot.min.js"></script>
-    <script src="js/lib/jquery.flot.resize.min.js"></script>
-    <script src="js/lib/jquery.peity.min.js"></script>
-    <script src="js/lib/jquery-ui.custom.js"></script>
-    <script src="js/lib/jquery.blockUI.js"></script>
-    <script src="js/lib/fullcalendar.min.js"></script>
-    <script src="js/lib/unicorn.js"></script>
-    <script src="js/lib/unicorn.dashboard.js"></script>
-    <script src="js/lib/bootstrap-treeview.min.js"></script>
 </head>
 <body ng-app="MOApp" ng-controller="MOCtrl">
 <div id="header" ng-include="'head.html'"></div>
@@ -44,7 +32,7 @@
                         <h5>会议列表</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-bordered table-striped table-hover data-table">
                             <thead>
                             <tr>
                                 <th>会议名称</th>
@@ -53,6 +41,8 @@
                                 <th>会议地点</th>
                                 <th>发起人</th>
                             </tr>
+                            </thead>
+                            <tbody id="tableBody">
                             <tr ng-repeat="m in meetings">
                                 <td><a ng-href="meeting-detail.html?companyId={{m.companyId}}&id={{m.id}}&&preUrl=meeting-overview.html">{{ m.name }}</a></td>
                                 <td><a ng-href="project-detail.html?companyId={{m.companyId}}&id={{m.projectId}}">{{ m.projectName }}</a></td>
@@ -60,8 +50,6 @@
                                 <td>{{ m.location }}</td>
                                 <td><a ng-href="user-detail.html?companyId={{m.companyId}}&id={{m.ownerId}}">{{m.ownerName}}</a></td>
                             </tr>
-                            </thead>
-                            <tbody id="tableBody">
                             </tbody>
                         </table>
                     </div>
@@ -70,6 +58,19 @@
         </div>
     </div>
 </div>
+<script src="js/lib/excanvas.min.js"></script>
+<script src="js/lib/jquery-3.1.1.min.js"></script>
+<script src="js/lib/bootstrap-3.3.7.min.js"></script>
+<script src="js/lib/jquery.flot.min.js"></script>
+<script src="js/lib/jquery.flot.resize.min.js"></script>
+<script src="js/lib/jquery.peity.min.js"></script>
+<script src="js/lib/jquery-ui.custom.js"></script>
+<script src="js/lib/jquery.blockUI.js"></script>
+<script src="js/lib/jquery.dataTables.min.js"></script>
+<script src="js/lib/fullcalendar.min.js"></script>
+<script src="js/lib/unicorn.js"></script>
+<script src="js/lib/unicorn.dashboard.js"></script>
+<script src="js/lib/bootstrap-treeview.min.js"></script>
 <script src="js/util.js"></script>
 <script src="js/meeting-overview.js"></script>
 </body>

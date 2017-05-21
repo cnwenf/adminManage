@@ -28,8 +28,10 @@ public class UserService {
         userEntity.setIDCard(IDCard);
         userEntity.setWorkNum(workNum);
         userEntity.setCompanyId(companyId);
-        userEntity.setDepartmentId(departmentId);
-        userEntity.setDepartmentName(departmentService.getById(companyId, departmentId).getName());
+        if (null != departmentId && !"".equals(departmentId)) {
+            userEntity.setDepartmentId(departmentId);
+            userEntity.setDepartmentName(departmentService.getById(companyId, departmentId).getName());
+        }
         userEntity.setProjectId(projectId);
         userEntity.setPhone(phone);
         userEntity.setEmail(email);
@@ -71,6 +73,22 @@ public class UserService {
                     && null != userEntity.getDepartmentId()
                     && userEntity.getDepartmentId().equals(departmentId)) {
                 result.add(userEntity);
+            }
+        }
+        return result;
+    }
+
+    public List<UserEntity> listByRole(String companyId, String role) {
+        List<UserEntity> userEntities = userDao.list();
+        List<UserEntity> result = new ArrayList<UserEntity>();
+        if (role.equals("materialadmin")) {
+            for (UserEntity userEntity : userEntities) {
+                if (null != userEntity.getCompanyId()
+                        && userEntity.getCompanyId().equals(companyId)
+                        && null != userEntity.getRole()
+                        && (userEntity.getRole().equals(role) || userEntity.getRole().equals("admin"))) {
+                    result.add(userEntity);
+                }
             }
         }
         return result;
