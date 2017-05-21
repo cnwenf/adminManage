@@ -64,4 +64,25 @@ public class UserController {
         return userService.create(displayName, name, name, name, workNum, departmentId, "", phone, email, "", 0, history, 0, companyId, role);
     }
 
+
+    @RequestMapping(value ="/update", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean update(String name,
+                          String displayName,
+                          String departmentId,
+                          String workNum,
+                          String phone,
+                          String email,
+                          String history,
+                          String role) {
+        return userService.update(name,
+                 displayName,
+                 departmentId,
+                 workNum,
+                 phone,
+                 email,
+                 history,
+                 role);
+    }
+
 }

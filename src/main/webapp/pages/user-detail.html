@@ -4,68 +4,18 @@
     <title>行政管理系统</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap-3.3.7.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/fullcalendar.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/multi-select.css" />
     <link rel="stylesheet" href="css/unicorn.main.css" />
     <link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+
+    <script src="js/lib/angular.min.js"></script>
 </head>
-<body>
-
-
-<div id="header">
-    <h1><a href="./dashboard.html">行政管理系统</a></h1>
-</div>
-
-<div id="sidebar">
-    <ul>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>部门管理</span></a>
-            <ul>
-                <li><a href="department-overview.html">部门概览</a></li>
-                <li><a>部门明细</a></li>
-                <li><a href="department-create.html">创建部门</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>项目管理</span></a>
-            <ul>
-                <li><a href="project-overview.html">项目概览</a></li>
-                <li><a href="project-create.html">创建项目</a></li>
-                <li><a href="project-detail.html">项目明细</a></li>
-            </ul>
-        </li>
-        <li class="submenu active open">
-            <a href="#"><i class="icon icon-th-list"></i> <span>人员管理</span></a>
-            <ul>
-                <li class="active"><a href="user-detail.html">人员查询</a></li>
-                <li><a href="user-create.html">添加员工</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>考勤管理</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="">请假申请</a></li>
-                <li><a href="">请假审批</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>会议管理</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="">我的会议</a></li>
-                <li><a href="">发起会议</a></li>
-            </ul>
-        </li>
-        <li class="submenu">
-            <a href="#"><i class="icon icon-th-list"></i> <span>物资管理</span> <span class="label">3</span></a>
-            <ul>
-                <li><a href="">物资申请</a></li>
-                <li><a href="">物资审批</a></li>
-            </ul>
-        </li>
-    </ul>
-
-</div>
+<body ng-app="userDetailApp" ng-controller="userDetailCtl">
+<div id="header" ng-include="'head.html'"></div>
+<div id="sidebar" ng-include="'sidebar.html'"></div>
 
 <div id="content">
     <div id="content-header">
@@ -82,37 +32,87 @@
                         <h5>人员信息</h5>
                     </div>
                     <div class="widget-content">
-                        <form action="#" method="get" class="form-horizontal">
+                        <form action="#" method="get" class="form-horizontal" ng-if='userInfo.role !="admin"'>
                             <p class="amount-word">
                                 姓名:
-                                <span id="displayName">姓名</span>
+                                <span id="displayName">{{user.displayName}}</span>
                             </p>
                             <p class="amount-word">
                                 工号:
-                                <span id="workNum">工号</span>
+                                <span id="workNum">{{user.workNum}}</span>
+                            </p>
+                            <p class="amount-word">
+                                角色:
+                                <span id="role">{{user.role}}</span>
                             </p>
                             <p class="amount-word">
                                 部门:
-                                <span><a href="" id="dpm">部门</a></span>
+                                <span><a href="" id="dpm">{{user.departmentName}}</a></span>
                             </p>
                             <p class="amount-word">
                                 联系电话:
-                                <span><a href="" id="phone">联系电话</a></span>
+                                <span><a href="" id="phone">{{user.phone}}</a></span>
                             </p>
                             <p class="amount-word">
                                 联系邮箱:
-                                <span id="email">联系邮箱</span>
+                                <span id="email">{{user.email}}</span>
                             </p>
                             <p class="amount-word">
                                 个性简历
-                                <span id="introduce">个性简历</span>
-                            </p>
-                            <p class="amount-word">
-                                项目经历
-                                <span id="projects">
-                                </span>
+                                <span id="introduce">{{user.history}}</span>
                             </p>
                         </form>
+                        <form action="#" method="get" class="form-horizontal" ng-if='userInfo.role =="admin"'>
+                            <div class="control-group">
+                                <label class="control-label">姓名</label>
+                                <div class="controls">
+                                    <input id="name" type="text" ng-model="user.displayName"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">身份证号码</label>
+                                <div class="controls">
+                                    <input id="ID" type="text" ng-model="user.name"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">工号</label>
+                                <div class="controls">
+                                    <input id="num" type="text" ng-model="user.workNum"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">部门</label>
+                                <div class="controls">
+                                    <select ng-model="projectSelect">
+                                        <option ng-selected='d.id == user.departmentId' ng-repeat="d in departments">
+                                            {{d.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">联系电话</label>
+                                <div class="controls">
+                                    <input id="startTime" type="text"  ng-model="user.phone" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">联系邮箱</label>
+                                <div class="controls">
+                                    <input id="endTime" type="text"  ng-model="user.email" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">个性简历</label>
+                                <div class="controls">
+                                    <input id="history" type="text"  ng-model="user.history" />
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-actions">
+                            <button ng-if='userInfo.role =="admin"' type="submit" class="btn btn-primary" ng-click="update()">更新</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,9 +127,11 @@
 <script src="js/lib/jquery.flot.min.js"></script>
 <script src="js/lib/jquery.flot.resize.min.js"></script>
 <script src="js/lib/jquery.peity.min.js"></script>
+<script src="js/lib/jquery-ui.custom.js"></script>
 <script src="js/lib/fullcalendar.min.js"></script>
 <script src="js/lib/unicorn.js"></script>
 <script src="js/lib/unicorn.dashboard.js"></script>
+<script src="js/lib/jquery.multi-select.js"></script>
 <script src="js/lib/bootstrap-treeview.min.js"></script>
 <script src="js/util.js"></script>
 <script src="js/user-detail.js"></script>

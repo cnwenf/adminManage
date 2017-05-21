@@ -80,5 +80,25 @@ public class UserService {
         return userDao.getById(id);
     }
 
+    public boolean update(String name,
+                          String displayName,
+                          String departmentId,
+                          String workNum,
+                          String phone,
+                          String email,
+                          String history,
+                          String role) {
+        UserEntity userEntity = userDao.getById(name);
+        userEntity.setDisplayName(displayName);
+        userEntity.setDepartmentId(departmentId);
+        userEntity.setDepartmentName(departmentService.getById(userEntity.getCompanyId(), departmentId).getName());
+        userEntity.setWorkNum(workNum);
+        userEntity.setPhone(phone);
+        userEntity.setEmail(email);
+        userEntity.setHistory(history);
+        userEntity.setRole(role);
+        userDao.update(userEntity);
+        return true;
+    }
 //    public void delete()
 }
