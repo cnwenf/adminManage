@@ -1,6 +1,7 @@
 package com.bupt.sse.adminManage.service;
 
 import com.bupt.sse.adminManage.dao.iface.DepartmentDao;
+import com.bupt.sse.adminManage.entity.UserEntity;
 import com.bupt.sse.adminManage.entity.common.BasePK;
 import com.bupt.sse.adminManage.entity.DepartmentEntity;
 import org.json.JSONArray;
@@ -21,6 +22,8 @@ public class DepartmentService {
     private DepartmentDao departmentDao;
     @Resource
     private ProjectService projectService;
+    @Resource
+    private UserService userService;
 
     private static String nodes = "nodes";
     private static String text = "text";
@@ -117,5 +120,17 @@ public class DepartmentService {
             }
         }
         return false;
+    }
+
+    public List<DepartmentEntity> listByUser(String companyId, String userId) {
+        UserEntity userEntity = userService.get(userId);
+        List<DepartmentEntity> result = new ArrayList<DepartmentEntity>();
+        if (null != userEntity.getRole() && "admin".equals(userEntity.getRole())) {
+            result = this.list(companyId);
+        } else {
+            DepartmentEntity departmentEntity = this.getById(companyId, userEntity.getDepartmentId());
+            result.add(departmentEntity);
+        }
+        return result;
     }
 }

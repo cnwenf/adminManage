@@ -34,6 +34,7 @@ var api = {
         structure: "/adminManage/department/structure",
         get: "/adminManage/department/get",
         list: "/adminManage/department/list",
+        listByUser: "/adminManage/department/listByUser",
         existChild: "/adminManage/department/existChild",
         delete: "/adminManage/department/delete"
     },

@@ -44,6 +44,13 @@ public class DepartmentController {
         return departmentService.list(companyId);
     }
 
+    @RequestMapping("/listByUser")
+    @ResponseBody
+    public List<DepartmentEntity> listByUser(String companyId, String userId){
+        return departmentService.listByUser(companyId, userId);
+    }
+
+
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
     public DepartmentEntity get(String companyId, String id){
