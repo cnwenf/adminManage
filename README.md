@@ -5,6 +5,6 @@ Q2：数据库如何配置？
 1.在数据库中创建数据库admin_manage
 2.修改\adminManage\src\main\resources\META-INF\properties\hibernate.properties中
 username=root
-password=Aa36221512
+password=123
 为实际的数据用户名和密码。
 表会自动创建。
